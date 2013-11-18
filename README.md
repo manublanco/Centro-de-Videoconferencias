@@ -4,11 +4,14 @@
 ####Autor : Manuel Blanco
 ####Universidade da Coruña
 
+***
 
-Para el desarrollo de este proyecto utilizo licode y node-login.
+####Para el desarrollo de este proyecto utilizo licode y node-login.
 
-*[Licode](https://github.com/ging/licode)
-*[Node-login](https://github.com/braitsch/node-login)
+* [Licode](https://github.com/ging/licode)
+* [Node-login](https://github.com/braitsch/node-login)
+
+***
 
 ***
 
