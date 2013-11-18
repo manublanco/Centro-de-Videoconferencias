@@ -49,6 +49,68 @@ body {
   width: 100%;
   heigth: 100px;
 }
+.fill {
+  height: 100%;
+}
+#chat {
+  position: relative;
+  height: 550px;
+}
+#video_grid {
+  height: 550px;
+  border: 1px solid #012c79;
+  margin-left: 0px;
+  background-color: #fff;
+}
+#chat_body {
+  background-color: #fff;
+  position: absolute;
+  bottom: 41px;
+  top: 50px;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #012c79;
+  width: 80%;
+  font-size: 14px;
+}
+#chat_message {
+  position: absolute;
+  bottom: 0px;
+  padding: 10px;
+  border: 1px solid #012c79;
+  width: 80%;
+  font-size: 14px;
+}
+#images_tablet {
+  height: 90px;
+}
+#back_icon {
+  position: absolute;
+  height: 20px;
+  cursor: pointer;
+  left: 10px;
+  padding-top: 75px;
+}
+.grid_element_border {
+  float: left;
+  position: relative;
+  background-color: #012c79;
+}
+.grid_element {
+  position: absolute;
+  bottom: 1px;
+  top: 1px;
+  right: 1px;
+  left: 1px;
+}
+.chat_name {
+  font-weight: bold;
+  float: left;
+  padding-right: 3px;
+}
+.chat_italic {
+  font-style: italic;
+}
 #account-form-container {
   width: 460px;
   margin: 100px auto;
