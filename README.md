@@ -6,13 +6,12 @@
 
 Para el desarrollo de este proyecto utilizo licode y node-login.
 
-*https://github.com/ging/licode
-*https://github.com/braitsch/node-login
+[Licode]https://github.com/ging/licode
+[Node-login]https://github.com/braitsch/node-login
 
 ####Installation & Setup
 
-*Antes de empezar se necesita tener instalado node.js y npm.
-*Tambien se necesita instalar licode tal y como explican en sus instrucciones.
+Antes de empezar se necesita tener instalado node.js y npm.Tambien se necesita instalar licode tal y como explican en sus instrucciones. Para el correcto funcionamiento copiar la carpeta proyecto dentro de /licode/extras.
 
 
 ```
