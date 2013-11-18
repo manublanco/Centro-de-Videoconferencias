@@ -1,0 +1,26 @@
+user = typeof(udata) != 'undefined' ? udata : { }
+// store the userId on the client side in a hidden input field //
+
+#evento-form-container
+	form( method="post")#evento-form.form-horizontal.well.span6
+		h1
+		p#sub1.subheading Creación de un evento
+		hr
+		fieldset
+			#titulo-cg.control-group
+				label.control-label(for='titulo-tf') Titulo
+				.controls
+					input#titulo-tf.input-xlarge(type='text', name='titulo')
+			#descripcion-cg.control-group
+				label.control-label(for='descripcion-tf') Descripción
+				.controls
+					input#descripcion-tf.input-xlarge(type='text', name='Descripcion')
+			
+			hr
+			p#sub2.subheading
+			.form-actions
+				button(type='submit')#evento-form-btn2.btn Crear
+
+// display form errors in a custom modal window //
+
+include modals/form-errors

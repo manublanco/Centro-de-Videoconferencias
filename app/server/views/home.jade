@@ -1,0 +1,70 @@
+extends layout
+
+
+block content
+	div.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container-fluid
+				ul#global-nav.nav.pull-left
+					a(href='/home').brand Home
+				ul#global-nav.nav.pull-left
+					a(href='/crear-evento').brand Crear Evento
+				ul#global-nav.nav.pull-left
+					a(href='/datos-usuario').brand Cuenta
+				button#btn-logout.btn.btn-primary
+					i.icon-lock.icon-white
+					| Salir
+	
+					user = typeof(udata) != 'undefined' ? udata : { }
+	
+	
+		div#roomcontainer.container-fluid
+			div#salas.row-fluid
+				div.container.span2
+					h2 Salas publicas:
+				div.span4
+					div#room1.btn.btn-large.btn-block.btn-primary Sala 1
+					br
+					div#room2.btn.btn-block.btn-large.btn-primary Sala 2
+					br
+					div#room3.btn.btn-block.btn-large.btn-primary Sala 3
+					br
+					div#room4.btn.btn-block.btn-large.btn-primary Sala 4
+					
+
+		div#vidcontainer.container.hide
+			div.row
+				div.span4
+					br
+				div.span4
+					div#myVideo
+				div.span4
+					p Conectado como:
+							input#user-connected-tf.input(type='text', name='user-connected', value= user.user)
+							//div#user-connected-tf(type='text', name='user-connected', value= user.user)
+
+							//script (document.writeln(user.user));
+							p Otros usuarios conectados:
+							div#usuarios-conectados
+								ul
+								
+									
+									
+
+
+		
+		
+	include modals/alert
+	include modals/confirm
+
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/views/home.js')
+	script(src='/js/controllers/homeController.js')
+	script(src='/js/form-validators/accountValidator.js')
+	script(src='/js/erizo.js')
+	script(src='/js/script.js')
