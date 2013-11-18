@@ -1,6 +1,6 @@
 {
 	"name": "Videoconference System using WebRtc",
-	"version": "1.3.2",
+	"version": "1.0.1",
 	"description": "Proyecto fin de Carrera. Desarrollo de un centro de conferencias virtual usando WebRtc",
 	"author": {
 		"name": "Manuel Blanco",

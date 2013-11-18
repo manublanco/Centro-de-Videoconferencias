@@ -1,3 +1,12 @@
+//-
+//- Copyright (C) Manuel J. Blanco Vecino
+//- 
+//- Desarrollo de un centro de videoconferencias utilizando WebRTC
+//- Project site: https://github.com/manublanco/Centro-de-Videoconferencias
+//- 
+//- Proyecto fin de carrera. Universidade da Coruña
+//-
+
 var serverUrl = "/";
 var localStream, room, roomId, interval, rooms;
 var DEMO = {};
@@ -260,25 +269,7 @@ getRooms (displayRooms);
                 }
               };
 
-/*
-            localStream.addEventListener("access-accepted", function () {
-                
-                var subscribeToStreams = function (streams) {
-                    if (!localStream.showing) {
-                        localStream.show();
-                    }
-                    var index, stream;
-                    for (index in streams) {
-                        if (streams.hasOwnProperty(index)) {
-                            stream = streams[index];
-                            if (localStream !== undefined && localStream.getID() !== stream.getID()) {
-                                room.subscribe(stream);
-                            } else {
-                                console.log("My own stream");
-                            }
-                        }
-                    }
-                };*/
+
 
                 room.addEventListener("room-connected", function (roomEvent) {
                     // Publish my stream
@@ -290,18 +281,6 @@ getRooms (displayRooms);
                 });
 
 
-                
-                /*
-                room.addEventListener("stream-subscribed", function(streamEvent) {
-                var stream = streamEvent.stream;
-                var div = document.createElement('div');
-                div.setAttribute("style", "width: 320px; height: 240px; background-color: black");
-                div.setAttribute("id", "test" + stream.getID());
-
-                document.body.appendChild(div);
-                stream.show("test" + stream.getID());
-
-            });*/
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
@@ -343,7 +322,7 @@ getRooms (displayRooms);
             });
             localStream.init();
         });  
-            //var connected = getUsers(roomId,displayUsers);
+
             //interval=setInterval(checkUsers,10000);
             //getUsers(roomId,displayUsers);
     }

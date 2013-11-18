@@ -1,7 +1,7 @@
 /*
 */
 /*
- MIT
+ MIT (licode)
 */
 var Url=require("url"),spawn=require("child_process").spawn,fs=require("fs"),XMLHttpRequest=function(){var b=this,o=require("http"),p=require("https"),j,c,e={},n={"User-Agent":"node.js",Accept:"*/*"},h=!1,l=!1,m=n;this.UNSENT=0;this.OPENED=1;this.HEADERS_RECEIVED=2;this.LOADING=3;this.DONE=4;this.readyState=this.UNSENT;this.onreadystatechange=null;this.responseXML=this.responseText="";this.statusText=this.status=null;this.open=function(a,b,f,c,g){e={method:a,url:b.toString(),async:"boolean"!==typeof f?
 !0:f,user:c||null,password:g||null};this.abort();i(this.OPENED)};this.setRequestHeader=function(a,b){if(this.readyState!=this.OPENED)throw"INVALID_STATE_ERR: setRequestHeader can only be called when state is OPEN";if(h)throw"INVALID_STATE_ERR: send flag is true";m[a]=b};this.getResponseHeader=function(a){return this.readyState>this.OPENED&&c.headers[a]&&!l?c.headers[a]:null};this.getAllResponseHeaders=function(){if(this.readyState<this.HEADERS_RECEIVED||l)return"";var a="",b;for(b in c.headers)a+=

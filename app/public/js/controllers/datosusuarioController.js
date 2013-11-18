@@ -1,3 +1,13 @@
+//-
+//- Copyright (C) Manuel J. Blanco Vecino
+//- 
+//- Desarrollo de un centro de videoconferencias utilizando WebRTC
+//- Project site: https://github.com/manublanco/Centro-de-Videoconferencias
+//- 
+//- Proyecto fin de carrera. Universidade da Coruña
+//-
+
+
 
 function datosusuarioController()
 {

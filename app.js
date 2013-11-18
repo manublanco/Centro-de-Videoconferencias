@@ -1,6 +1,11 @@
-//Proyecto Fin de Carrera
-//Manuel Blanco Vecino
-//Servidor Node.JS
+//-
+//- Copyright (C) Manuel J. Blanco Vecino
+//- 
+//- Desarrollo de un centro de videoconferencias utilizando WebRTC
+//- Project site: https://github.com/manublanco/Centro-de-Videoconferencias
+//- 
+//- Proyecto fin de carrera. Universidade da Coruña
+//-
 
 
 var express = require('express');
@@ -126,7 +131,7 @@ function createRooms(){
 }
 
 
-
+//Utilizar deleteAllRooms() para borrar todas las salas. Luego ejecutar createRooms();
 
 //deleteAllRooms();
 createRooms();
