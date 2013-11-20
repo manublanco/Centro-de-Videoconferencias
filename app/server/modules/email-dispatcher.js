@@ -35,7 +35,7 @@ EM.composeEmail = function(o)
 {
 	var link = 'http://localhost:3001/reset-password?e='+o.email+'&p='+o.pass;
 	var html = "<html><body>";
-		html += "Hi "+o.name+",<br><br>";
+		html += "Hola "+o.name+",<br><br>";
 		html += "Tu nombre de usuario es :: <b>"+o.user+"</b><br><br>";
 		html += "<a href='"+link+"'>Pincha aqui para actualizar tu contraseña </a><br><br>";
 		html += "Gracias.<br>";

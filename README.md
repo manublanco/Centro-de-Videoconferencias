@@ -13,7 +13,6 @@
 
 ***
 
-***
 
 ####Se utilizan las siguientes librerias:
 
