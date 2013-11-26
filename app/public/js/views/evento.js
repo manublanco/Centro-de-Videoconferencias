@@ -9,10 +9,10 @@
 
 $(document).ready(function(){
 
-	var hc = new datosusuarioController();
-	var av = new AccountValidator();
+	var hc = new eventoController();
+	//var av = new AccountValidator();
 	
-	$('#account-form').ajaxForm({
+	$('#evento-form').ajaxForm({
 		beforeSubmit : function(formData, jqForm, options){
 			if (av.validateForm() == false){
 				return false;
@@ -37,20 +37,12 @@ $(document).ready(function(){
 
 // customize the account settings form //
 	
-	$('#account-form h1').text('Detalles de la cuenta');
-	$('#account-form #sub1').text('Aqui estan los datos actuales de su cuenta.');
+	$('#evento-form h1').text('Crear un Evento');
+	$('#evento-form #sub1').text('Formulario para la creación de un evento.');
 	$('#user-tf').attr('disabled', 'desactivado');
-	$('#account-form-btn1').html('Borrado');
-	$('#account-form-btn1').addClass('btn-danger');
-	$('#account-form-btn2').html('Actualizar');
+	$('#evento-form-btn1').html('Cancelar');
+	$('#evento-form-btn2').html('Crear Evento');
 
-// setup the confirm window that displays when the user chooses to delete their account //
 
-	$('.modal-confirm').modal({ show : false, keyboard : true, backdrop : true });
-	$('.modal-confirm .modal-header h3').text('Borrar Cuenta');
-	$('.modal-confirm .modal-body p').html('¿ Esta seguro de que quiere borrar su cuenta?');
-	$('.modal-confirm .cancel').html('Cancelar');
-	$('.modal-confirm .submit').html('Borrar');
-	$('.modal-confirm .submit').addClass('btn-danger');
 
 })

@@ -137,6 +137,10 @@ function createRooms(){
 createRooms();
 
 
+//Crear una sala, se utilizara cuando creemos salas en eventos privados
+
+
+
 
 //Crea el token, se le pasa como parametro el identicador de la sala
 app.post('/createToken/:roomId', function (req, res) {
