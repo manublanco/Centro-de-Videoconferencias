@@ -10,6 +10,7 @@
 var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+var N = require('./../../nuve');
 
 module.exports = function(app) {
 
@@ -137,38 +138,59 @@ app.get('/datos-usuario', function(req, res) {
 //crear Evento
 
 	app.get('/crear-evento', function(req, res) {
-	    if (req.session.user == null){
+		    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
 			res.render('crear-evento', {
-				title : 'Crea un evento',
+				title : 'Crear Evento',
 				countries : CT,
 				udata : req.session.user
 			});
 	    }
 	});
+
+	
 	
 	app.post('/crear-evento', function(req, res){
 		if (req.param('user') != undefined) {
-			AM.updateAccount({
-				user 		: req.param('user'),
-				name 		: req.param('name'),
-				email 		: req.param('email'),
-				country 	: req.param('country'),
-				pass		: req.param('pass')
+		
+		N.API.createRoom('id_sala', function (roomID) {
+	            id_sala = roomID._id;
+	            console.log('Created room ', id_sala);
+       
+			AM.addNewEvent({
+				titulo 			: req.param('titulo'),
+				gestor			: req.param('user'),
+				descripcion 	: req.param('descripcion'),
+				fecha 			: req.param('fecha'),
+				hora 			: req.param('hora'),
+				sala 			: id_sala,
+				invitados		: req.param('invitado')
 			}, function(e, o){
 				if (e){
-					res.send('error-updating-account', 400);
+					res.send('error-creando-evento', 400);
 				}	else{
-					req.session.user = o;
-			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
-						res.cookie('user', o.user, { maxAge: 900000 });
-						res.cookie('pass', o.pass, { maxAge: 900000 });	
-					}
+						EM.enviarInvitacion(o,function (e,m){	
+						// this callback takes a moment to return //
+						// should add an ajax loader to give user feedback //
+						if (!e) {
+							res.send('ok', 200);
+						}	else{
+							res.send('email-server-error', 400);
+							for (k in e) console.log('error : ', k, e[k]);
+						}
+					});
+
+						//req.session.user = req.session.user;
+					// update the user's login cookies if they exists //
+					//if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					//	res.cookie('user', req.session.user, { maxAge: 900000 });
+					//	res.cookie('pass', req.session.pass, { maxAge: 900000 });	
+					//}
 					res.send('ok', 200);
 				}
+			    });
 			});
 		}	else if (req.param('logout') == 'true'){
 			res.clearCookie('user');
@@ -176,7 +198,7 @@ app.get('/datos-usuario', function(req, res) {
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		}
 	});
-
+	
 
 
 // creating new accounts //
@@ -200,6 +222,8 @@ app.get('/datos-usuario', function(req, res) {
 			}
 		});
 	});
+
+
 
 // password reset //
 

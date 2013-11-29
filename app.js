@@ -142,6 +142,7 @@ createRooms();
 
 
 
+
 //Crea el token, se le pasa como parametro el identicador de la sala
 app.post('/createToken/:roomId', function (req, res) {
     "use strict";

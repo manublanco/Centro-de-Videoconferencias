@@ -10,8 +10,13 @@
 
 // preset form values if we receive a userdata object //
 user = typeof(udata) != 'undefined' ? udata : { }
+//event = typeof(udata) != 'undefined' ? udata : { }
+
+
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
+//input(type='hidden', value= event._id)#eventId
+
 
 #evento-form-container
 	form( method="post")#evento-form.form-horizontal.well.span6
@@ -26,7 +31,7 @@ input(type='hidden', value= user._id)#userId
 			#descripcion-cg.control-group
 				label.control-label(for='descripcion-tf') Descripción
 				.controls
-					textarea#descripcion-tf.input-xlarge(type='text', name='Descripcion')
+					textarea#descripcion-tf.input-xlarge(type='text', name='descripcion')
 			#fecha-cg.control-group
 				label.control-label(for='fecha-tf') Fecha 
 				.controls
@@ -35,12 +40,17 @@ input(type='hidden', value= user._id)#userId
 				.controls	
 					input#hora-tf.input(type='time', name='hora')
 			#invitado-cg.control-group
-				label.control-label(for='invitado-tf')	Invitados 
+				label.control-label(for='invitado-tf')	Correo 
 				.controls
-					input#invitado-tf.input(type='email', name='invitado1')
-					input#invitado-tf.input(type='email', name='invitado2')
-					input#invitado-tf.input(type='email', name='invitado3')
-					input#invitado-tf.input(type='email', name='invitado4')
+					input#invitado-tf.input(type='email', name='invitado')
+					input(type='button', onclick='anhadirInvitado()', value='Añadir Invitado')
+					
+					#box
+  
+
+					
+					input#user-tf.input-xlarge.hide(type='text', name='user', value= user.user)
+
 			hr
 			p#sub2.subheading
 			.form-actions

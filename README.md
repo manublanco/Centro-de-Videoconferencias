@@ -1,12 +1,12 @@
-#Desarrollo de un centro de conferencias virtual basado en WebRtc
+#Development of a virtual conference center based on WebRTC
 
 ####Proyecto fin de carrera
-####Autor : Manuel Blanco
+####Author : Manuel Blanco
 ####Universidade da Coruña
 
 ***
 
-####Para el desarrollo de este proyecto utilizo licode y node-login.
+#### For the development of this project we use Licode and Node-login.
 
 * [Licode](https://github.com/ging/licode)
 * [Node-login](https://github.com/braitsch/node-login)
@@ -14,7 +14,7 @@
 ***
 
 
-####Se utilizan las siguientes librerias:
+####We also use the following libraries:
 
 * [Node.js](http://nodejs.org/) - Application Server
 * [Express.js](http://expressjs.com/) - Node.js Web Framework
@@ -31,7 +31,8 @@
 
 ####Installation & Setup
 
-Antes de empezar se necesita tener instalado node.js y npm.Tambien se necesita instalar licode tal y como explican en sus instrucciones. Para el correcto funcionamiento copiar la carpeta proyecto dentro de /licode/extras.
+Before the installation we need install node.js and npm. We need also install licode in the way it is explained in his page. For the correct working we need to copy the folder "proyecto" inside /licode/extras
+
 
 
 ```
@@ -40,4 +41,4 @@ cd proyecto
 npm install -d
 node app
 ```
-Para que el correo funcione es necesario editar email-settings.js con tus propios datos.
+It is necessary to configure the file email-settings.js with your own data.

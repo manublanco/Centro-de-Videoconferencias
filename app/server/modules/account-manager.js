@@ -27,6 +27,7 @@ var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}),
 	}
 });
 var accounts = db.collection('accounts');
+var events = db.collection('events');
 
 /* login validation methods */
 
@@ -81,6 +82,17 @@ exports.addNewAccount = function(newData, callback)
 		}
 	});
 }
+
+
+exports.addNewEvent = function(newEventData, callback)
+{
+
+	accounts.findOne({user: newEventData.user},function(e,o){
+		
+		events.insert(newEventData, {safe: true}, callback);
+	});	
+}
+
 
 exports.updateAccount = function(newData, callback)
 {

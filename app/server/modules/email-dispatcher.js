@@ -42,3 +42,26 @@ EM.composeEmail = function(o)
 		html += "</body></html>";
 	return  [{data:html, alternative:true}];
 }
+
+EM.enviarInvitacion = function(events, callback)
+{
+	EM.server.send({
+		from         : ES.sender,
+		to           : events.invitado,
+		subject      : 'Invitacion a Evento',
+		text         : 'Algo fue mal... :(',
+		attachment   : EM.emailInvitacion(events)
+	}, callback );
+}
+
+EM.emailInvitacion = function(o)
+{
+	var link = 'http://localhost:3001/evento?e='+o.sala+'&p='+o.gestor
+	var html = "<html><body>";
+		html += "Hola ,<br><br>";
+		html += "Has sido invitado al siguiente evento :: <b>"+o.titulo+"</b><br><br>";
+		html += "<a href='"+link+"'>Pincha aqui para acceder al evento </a><br><br>";
+		html += "Gracias.<br>";
+		html += "</body></html>";
+	return  [{data:html, alternative:true}];
+}
