@@ -11,8 +11,14 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 var N = require('./../../nuve');
+var EV = require('./../public/js/form-validators/eventoValidator')
+
+
+
 
 module.exports = function(app) {
+
+
 
 // main login page //
 
@@ -158,7 +164,7 @@ app.get('/datos-usuario', function(req, res) {
 		N.API.createRoom('id_sala', function (roomID) {
 	            id_sala = roomID._id;
 	            console.log('Created room ', id_sala);
-       
+       			console.log('array invitados',array_invitados);
 			AM.addNewEvent({
 				titulo 			: req.param('titulo'),
 				gestor			: req.param('user'),
@@ -166,11 +172,12 @@ app.get('/datos-usuario', function(req, res) {
 				fecha 			: req.param('fecha'),
 				hora 			: req.param('hora'),
 				sala 			: id_sala,
-				invitados		: req.param('invitado')
+				invitados		: array_invitados
 			}, function(e, o){
 				if (e){
 					res.send('error-creando-evento', 400);
 				}	else{
+					/*
 						EM.enviarInvitacion(o,function (e,m){	
 						// this callback takes a moment to return //
 						// should add an ajax loader to give user feedback //
@@ -180,14 +187,14 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('email-server-error', 400);
 							for (k in e) console.log('error : ', k, e[k]);
 						}
-					});
+					});*/
 
-						//req.session.user = req.session.user;
+						req.session.user = req.session.user;
 					// update the user's login cookies if they exists //
-					//if (req.cookies.user != undefined && req.cookies.pass != undefined){
-					//	res.cookie('user', req.session.user, { maxAge: 900000 });
-					//	res.cookie('pass', req.session.pass, { maxAge: 900000 });	
-					//}
+					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+						res.cookie('user', req.session.user, { maxAge: 900000 });
+						res.cookie('pass', req.session.pass, { maxAge: 900000 });	
+					}
 					res.send('ok', 200);
 				}
 			    });
@@ -199,6 +206,52 @@ app.get('/datos-usuario', function(req, res) {
 		}
 	});
 	
+
+//Sala evento
+
+// logged-in user homepage //
+	
+	app.get('/sala_evento', function(req, res) {
+	    if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   else{
+			res.render('sala_evento', {
+				title : 'Control Panel',
+				countries : CT,
+				udata : req.session.user
+			});
+	    }
+	});
+	
+	app.post('/sala_evento', function(req, res){
+		if (req.param('user') != undefined) {
+			AM.updateAccount({
+				user 		: req.param('user'),
+				name 		: req.param('name'),
+				email 		: req.param('email'),
+				country 	: req.param('country'),
+				pass		: req.param('pass')
+			}, function(e, o){
+				if (e){
+					res.send('error-updating-account', 400);
+				}	else{
+					req.session.user = o;
+			// update the user's login cookies if they exists //
+					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+						res.cookie('user', o.user, { maxAge: 900000 });
+						res.cookie('pass', o.pass, { maxAge: 900000 });	
+					}
+					res.send('ok', 200);
+				}
+			});
+		}	else if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+	});
+
 
 
 // creating new accounts //

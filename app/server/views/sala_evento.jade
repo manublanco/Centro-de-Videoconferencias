@@ -1,0 +1,55 @@
+//-
+//- Copyright (C) Manuel J. Blanco Vecino
+//- 
+//- Desarrollo de un centro de videoconferencias utilizando WebRTC
+//- Project site: https://github.com/manublanco/Centro-de-Videoconferencias
+//- 
+//- Proyecto fin de carrera. Universidade da Coruña
+//-
+
+extends layout
+
+
+block content
+	div.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container-fluid
+				ul#global-nav.nav.pull-left
+					a(href='/home').brand Home
+				ul#global-nav.nav.pull-left
+					a(href='/crear-evento').brand Crear Evento
+				ul#global-nav.nav.pull-left
+					a(href='/datos-usuario').brand Cuenta
+				button#btn-logout.btn.btn-primary
+					i.icon-lock.icon-white
+					| Salir
+	
+					user = typeof(udata) != 'undefined' ? udata : { }			
+		div#vidcontainer.container
+		div.row
+			div#video_grid.span9
+
+			div#chat.span3.visible-desktop
+				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
+
+				div#chat_body
+					input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
+			
+			div#users.span3
+				#eventTitle Titulo:
+				#eventDescription Descripción:
+				#Fecha Fecha
+				#Hora Hora
+				#Invitados Invitados Conectados:
+				
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/views/home.js')
+	script(src='/js/controllers/homeController.js')
+	script(src='/js/form-validators/accountValidator.js')
+	script(src='/js/erizo.js')
+	script(src='/js/evento_script.js')

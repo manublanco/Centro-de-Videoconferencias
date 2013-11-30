@@ -21,6 +21,7 @@ $(document).ready(function(){
 			} 	else{
 			// push the disabled username field onto the form data array //
 				formData.push({name:'user', value:$('#user-tf').val()})
+
 				return true;
 			}
 		},
@@ -35,6 +36,21 @@ $(document).ready(function(){
 			//}
 		}
 	});
+
+	var date = new Date();
+
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+
+	if (month < 10) month = "0" + month;
+	if (day < 10) day = "0" + day;
+
+	var today = year + "-" + month + "-" + day;       
+	document.getElementById("fecha-tf").value = today;
+	document.getElementById("fecha-tf").min = today;
+
+     
 
 // customize the account settings form //
 	

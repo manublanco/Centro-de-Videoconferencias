@@ -6,6 +6,9 @@
 //- 
 //- Proyecto fin de carrera. Universidade da Coruña
 //-
+ 
+ array_invitados = [];
+
 
 function EventoValidator(){
 
@@ -28,9 +31,8 @@ function EventoValidator(){
 	{
 		return s.length >= 10;
 	}
+
 	
-
-
 	
 	this.showErrors = function(a)
 	{
@@ -40,6 +42,7 @@ function EventoValidator(){
 		for (var i=0; i < a.length; i++) ul.append('<li>'+a[i]+'</li>');
 		this.alert.modal('show');
 	}
+
 
 }
 
@@ -58,20 +61,24 @@ EventoValidator.prototype.validateForm = function()
 		e.push('Ponga una descripción del evento');
 	}
 
+
+
 	if (e.length) this.showErrors(e);
 	return e.length === 0;
 }
 
-var array_invitados = [];
 
 function anhadirInvitado()
    {
+
      var x = document.getElementById("box");
      array_invitados.push(document.getElementById("invitado-tf").value);
      x.innerHTML = array_invitados.join('<br/>'); 
 
-     console.log(array_invitados);
-     return array_invitados;
+     console.log(window.array_invitados);
+
+ 
 
    }	
+
 
