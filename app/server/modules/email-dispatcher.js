@@ -60,6 +60,9 @@ EM.emailInvitacion = function(o)
 	var html = "<html><body>";
 		html += "Hola ,<br><br>";
 		html += "Has sido invitado al siguiente evento :: <b>"+o.titulo+"</b><br><br>";
+		html += "Creado por :: <b>"+o.gestor+"</b><br><br>";
+		html += "La descripción del evento es la siguiente: <br><br>"+o.descripcion+"<br><br><br>";
+		html += "El evento comenzará el <b>"+o.fecha+"</b> a la hora <b>"+o.hora+ "<br>"
 		html += "<a href='"+link+"'>Pincha aqui para acceder al evento </a><br><br>";
 		html += "Gracias.<br>";
 		html += "</body></html>";
