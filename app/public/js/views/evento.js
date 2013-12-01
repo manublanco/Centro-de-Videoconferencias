@@ -57,7 +57,7 @@ $(document).ready(function(){
 	$('#evento-form h1').text('Crear un Evento');
 	$('#evento-form #sub1').text('Formulario para la creación de un evento.');
 	$('#user-tf').attr('disabled', 'desactivado');
-	$('#evento-form-btn1').html('Volver');
+	$('#evento-form-btn1').html('Cancelar');
 	$('#evento-form-btn2').html('Crear Evento');
 
 
