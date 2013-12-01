@@ -127,15 +127,18 @@ try{
 var displayUsers = function(userList) {
 
         users = JSON.parse(userList);
-        var usuariosOnline = document.getElementById("usuarios-conectados");
+        var usuariosOnline = document.getElementById("usuarios");
 
         for (var i = 0; i < users.length; i++) {
             console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
 
-            usuariosOnline.childNodes[i].innerText = users[i].name;
+            //usuariosOnline.childNodes[i].innerText = users[i].name;
         }
 };
                
+
+
+
 
 
 //getRooms (displayRooms);
@@ -196,22 +199,8 @@ var displayUsers = function(userList) {
 
 
 
-/*
-    var checkUsers = function() {
-        getUsers(roomId1, function(users) {
-            displayUsers(users);
-            getUsers(roomId2, function(users) {
-                displayUsers(users);
-                getUsers(roomId3, function(users) {
-                    displayUsers(users);
-                    getUsers(roomId4, function(users) {
-                        displayUsers(users);
-                    });    
-                });
-            });
-        });
-    };*/
 
+  
 
 
     if(location.search.substr(1)){
@@ -221,13 +210,15 @@ var displayUsers = function(userList) {
       Separ = Variables[i].split('=');
       eval ('var '+Separ[0]+'="'+Separ[1]+'"');
     }
-    alert('idsala: '+roomId);
-
-    //var idsala = roomId;
-
-
 
   }
+
+    var checkUsers = function() {
+        getUsers(roomId, function(users) {
+            displayUsers(users);       
+        });
+    };
+
 
 /*
     room1.onload = function(evt) {
@@ -322,8 +313,8 @@ var displayUsers = function(userList) {
             localStream.init();
         });  
 
-            //interval=setInterval(checkUsers,10000);
-            //getUsers(roomId,displayUsers);
+            interval=setInterval(checkUsers,10000);
+            getUsers(roomId,displayUsers);
     
 
 }

@@ -177,7 +177,21 @@ app.get('/datos-usuario', function(req, res) {
 				if (e){
 					res.send('error-creando-evento', 400);
 				}	else{
-					AM.getEventByTitulo(req.param('titulo'), function(o){
+					AM.getEmailByUser(req.param('user'),function(a){
+						     email = a.email;
+						     console.log('email',email);
+						AM.getEventByTitulo(req.param('titulo'), function(o){
+
+						EM.enviarConfirmacionEventoCreado(o,email,function(e,m){
+						// this callback takes a moment to return //
+						// should add an ajax loader to give user feedback //
+						if (!e) {
+							res.send('ok', 200);
+						}	else{
+							res.send('email-server-error', 400);
+							for (k in e) console.log('error : ', k, e[k]);
+						}
+					});
 						EM.enviarInvitacion(o,function (e,m){	
 						// this callback takes a moment to return //
 						// should add an ajax loader to give user feedback //
@@ -196,9 +210,9 @@ app.get('/datos-usuario', function(req, res) {
 					//	res.cookie('pass', req.session.pass, { maxAge: 900000 });	
 					//}
 					res.send('ok', 200);
-				
-			});
-			    }
+							});
+						});
+			    	}	
 
 			});
 		});

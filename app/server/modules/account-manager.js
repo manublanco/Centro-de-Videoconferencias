@@ -143,6 +143,11 @@ exports.getAccountByEmail = function(email, callback)
 	accounts.findOne({email:email}, function(e, o){ callback(o); });
 }
 
+exports.getEmailByUser= function(user,callback)
+{
+	accounts.findOne({user:user}, function(e,o){callback(o);});
+}
+
 exports.getEventByTitulo = function (titulo, callback)
 {
 	events.findOne({titulo:titulo}, function(e,o){callback(o);});
