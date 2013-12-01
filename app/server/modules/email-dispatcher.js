@@ -47,7 +47,7 @@ EM.enviarInvitacion = function(events, callback)
 {
 	EM.server.send({
 		from         : ES.sender,
-		to           : events.invitado,
+		to           : events.invitados,
 		subject      : 'Invitacion a Evento',
 		text         : 'Algo fue mal... :(',
 		attachment   : EM.emailInvitacion(events)
@@ -56,7 +56,7 @@ EM.enviarInvitacion = function(events, callback)
 
 EM.emailInvitacion = function(o)
 {
-	var link = 'http://localhost:3001/evento?e='+o.sala+'&p='+o.gestor
+	var link = 'http://localhost:3001/sala_evento?roomId='+o.sala
 	var html = "<html><body>";
 		html += "Hola ,<br><br>";
 		html += "Has sido invitado al siguiente evento :: <b>"+o.titulo+"</b><br><br>";

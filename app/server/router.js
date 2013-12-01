@@ -164,7 +164,7 @@ app.get('/datos-usuario', function(req, res) {
 		N.API.createRoom('id_sala', function (roomID) {
 	            id_sala = roomID._id;
 	            console.log('Created room ', id_sala);
-       			console.log('array invitados',array_invitados);
+       			//console.log('array invitados',array_invitados);
 			AM.addNewEvent({
 				titulo 			: req.param('titulo'),
 				gestor			: req.param('user'),
@@ -172,12 +172,12 @@ app.get('/datos-usuario', function(req, res) {
 				fecha 			: req.param('fecha'),
 				hora 			: req.param('hora'),
 				sala 			: id_sala,
-				invitados		: array_invitados
+				invitados		: req.param('array_invitados')
 			}, function(e, o){
 				if (e){
 					res.send('error-creando-evento', 400);
 				}	else{
-					/*
+					AM.getEventByTitulo(req.param('titulo'), function(o){
 						EM.enviarInvitacion(o,function (e,m){	
 						// this callback takes a moment to return //
 						// should add an ajax loader to give user feedback //
@@ -187,19 +187,23 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('email-server-error', 400);
 							for (k in e) console.log('error : ', k, e[k]);
 						}
-					});*/
+					});
 
-						req.session.user = req.session.user;
+
 					// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
-						res.cookie('user', req.session.user, { maxAge: 900000 });
-						res.cookie('pass', req.session.pass, { maxAge: 900000 });	
-					}
+					//if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					//	res.cookie('user', req.session.user, { maxAge: 900000 });
+					//	res.cookie('pass', req.session.pass, { maxAge: 900000 });	
+					//}
 					res.send('ok', 200);
-				}
-			    });
+				
 			});
-		}	else if (req.param('logout') == 'true'){
+			    }
+
+			});
+		});
+	}
+			else if (req.param('logout') == 'true'){
 			res.clearCookie('user');
 			res.clearCookie('pass');
 			req.session.destroy(function(e){ res.send('ok', 200); });

@@ -77,6 +77,8 @@ function anhadirInvitado()
 
      console.log(window.array_invitados);
 
+     document.getElementById("array-tf").value = array_invitados;
+
  
 
    }	
