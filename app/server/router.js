@@ -164,7 +164,6 @@ app.get('/datos-usuario', function(req, res) {
 		N.API.createRoom('id_sala', function (roomID) {
 	            id_sala = roomID._id;
 	            console.log('Created room ', id_sala);
-       			//console.log('array invitados',array_invitados);
 			AM.addNewEvent({
 				titulo 			: req.param('titulo'),
 				gestor			: req.param('user'),
@@ -224,6 +223,94 @@ app.get('/datos-usuario', function(req, res) {
 		}
 	});
 	
+//Modificar Evento
+
+
+	app.get('/modificar_evento', function(req, res) {
+		    if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   else{
+ 				
+	    	var sala = String(req.query.roomId);
+	    	console.log('salaaaa     '+sala);
+
+	    	AM.getEventBySala(sala, function(a){
+	    		evento=a;
+
+	    		res.render('modificar_evento', {
+				title : 'Modificar evento',
+				countries : CT,
+				edata : evento
+				});
+	    	});	
+	    }
+	});
+
+	
+	
+	app.post('/modificar_evento', function(req, res){
+		if (req.param('user') != undefined) {
+			var sala = String(req.query.roomId);
+
+
+			AM.updateEvent(sala,{
+				titulo 			: req.param('titulo'),
+				gestor			: req.param('user'),
+				descripcion 	: req.param('descripcion'),
+				fecha 			: req.param('fecha'),
+				hora 			: req.param('hora'),
+				invitados		: req.param('array_invitados')
+			}, function(e, o){
+				if (e){
+					res.send('error-modificando-evento', 400);
+				}	else{
+					AM.getEmailByUser(o.gestor,function(a){
+						    var email = a.email;
+						     console.log('email',email);
+						AM.getEventByTitulo(req.param('titulo'), function(o){
+
+						EM.enviarModificacionEvento(o,email,function(e,m){
+						// this callback takes a moment to return //
+						// should add an ajax loader to give user feedback //
+						if (!e) {
+							res.send('ok', 200);
+						}	else{
+							res.send('email-server-error', 400);
+							for (k in e) console.log('error : ', k, e[k]);
+						}
+					});
+						EM.enviarInvitacion(o,function (e,m){	
+						// this callback takes a moment to return //
+						// should add an ajax loader to give user feedback //
+						if (!e) {
+							res.send('ok', 200);
+						}	else{
+							res.send('email-server-error', 400);
+							for (k in e) console.log('error : ', k, e[k]);
+						}
+					});
+
+
+					// update the user's login cookies if they exists //
+					//if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					//	res.cookie('user', req.session.user, { maxAge: 900000 });
+					//	res.cookie('pass', req.session.pass, { maxAge: 900000 });	
+					//}
+					res.send('ok', 200);
+							});
+						});
+			    	}	
+
+			});
+	}
+			else if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+	});
+
 
 //Sala evento
 

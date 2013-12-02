@@ -15,50 +15,6 @@ var DEMO = {};
 var user = typeof(udata) != 'undefined' ? udata : { };
 
 
-
-
-
-
-
-/*
-//Devuelve el id de las salas disponibles
-var getRooms = function (callback){
-
-    var req = new  XMLHttpRequest();
-            //parsedResponse;
-    var url = serverUrl + 'getRooms/';
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 ){
-            //parsedResponse=JSON.parse(req.responseText);
-            callback(req.responseText);
-         }
-        };
-
-    req.open('POST',url,true);
-
-    console.log("Sending to " + url);
-    req.send();
-}
-
-
-//Muestra las cuatro salas publicas disponibles
- var displayRooms = function(roomList) {
-    
-    rooms = JSON.parse(roomList);
-    for (var i = 0; i < rooms.length; i++) {
-      var room = rooms[i];
-        //console.log(rooms[0]._id);
-
-            roomId1 = rooms[0]._id;
-            roomId2 = rooms[1]._id;
-            roomId3 = rooms[2]._id;
-            roomId4 = rooms[3]._id;
-            
-        }
-    };   
-
-*/
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -85,7 +41,6 @@ try{
 }
 
     
-    //var room1 = document.getElementById('room1');
 
 
     var createToken = function(roomId,userName, role, callback) {
@@ -124,6 +79,8 @@ try{
         req.send();
     };
 
+
+
 var displayUsers = function(userList) {
 
         users = JSON.parse(userList);
@@ -136,12 +93,6 @@ var displayUsers = function(userList) {
         }
 };
                
-
-
-
-
-
-//getRooms (displayRooms);
 
 
 //CHAT
@@ -201,7 +152,7 @@ var displayUsers = function(userList) {
 
 
   
-
+//Capta roomId de la url
 
     if(location.search.substr(1)){
     Variables = location.search.substr(1).split ('&');
@@ -213,6 +164,8 @@ var displayUsers = function(userList) {
 
   }
 
+
+
     var checkUsers = function() {
         getUsers(roomId, function(users) {
             displayUsers(users);       
@@ -220,22 +173,8 @@ var displayUsers = function(userList) {
     };
 
 
-/*
-    room1.onload = function(evt) {
-        initialize(roomId);
-    };
 
 
-   // initialize(idsala);
-*/
-
-
-/*
-        var roomcontainer = document.getElementById("roomcontainer");
-        roomcontainer.setAttribute("class", "hide");
-        var vidcontainer = document.getElementById("vidcontainer");
-        vidcontainer.setAttribute("class", "");
-*/
 
         var usuario = $('#user-connected-tf').val();
         console.log('nombre de usuario:',usuario);

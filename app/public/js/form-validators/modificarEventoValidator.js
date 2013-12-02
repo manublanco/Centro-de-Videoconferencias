@@ -11,7 +11,7 @@
 var array_invitados = [];
 
 
-function EventoValidator(){
+function modificarEventoValidator(){
 
 // build array maps of the form inputs & control groups //
 
@@ -49,7 +49,7 @@ function EventoValidator(){
 
 
 
-EventoValidator.prototype.validateForm = function()
+modificarEventoValidator.prototype.validateForm = function()
 {
 	var e = [];
 	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
@@ -69,10 +69,9 @@ EventoValidator.prototype.validateForm = function()
 }
 
 
-function anhadirInvitado()
+function anhadirInvitadomod()
    {
 
-   	//array_invitados=document.getElementById("array-tf").value;
 
      var x = document.getElementById("box");
      array_invitados.push(document.getElementById("invitado-tf").value);
@@ -85,7 +84,27 @@ function anhadirInvitado()
  
 
    }	
+function guardar_invitados_previos()
+{
+	array_invitados.push(document.getElementById("array-tf").value);
 
+}
+
+
+function mod_evento()
+{
+
+    if(location.search.substr(1)){
+    Variables = location.search.substr(1).split ('&');
+    console.log('variableees',Variables);
+    for (i = 0; i < Variables.length; i++) {
+      Separ = Variables[i].split('=');
+      eval ('var '+Separ[0]+'="'+Separ[1]+'"');
+    }
+  window.top.location.replace("http://localhost:3001/modificar_evento?roomId="+roomId);
+
+  }
+}
 
 
 

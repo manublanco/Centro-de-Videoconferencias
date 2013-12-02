@@ -117,6 +117,24 @@ exports.updateAccount = function(newData, callback)
 	});
 }
 
+
+exports.updateEvent = function(sala,newData, callback)
+{
+	events.findOne({sala:sala}, function(e, o){
+		o.titulo 		= newData.titulo;
+		o.descripcion 	= newData.descripcion;
+		o.fecha			= newData.fecha;
+		o.hora			= newData.hora;
+		o.invitados		= newData.invitados;
+		
+		events.save(o, {safe: true}, function(err) {
+				if (err) callback(err);
+				else callback(null, o);
+			});
+		
+	});
+}
+
 exports.updatePassword = function(email, newPass, callback)
 {
 	accounts.findOne({email:email}, function(e, o){
@@ -153,12 +171,21 @@ exports.getEventByTitulo = function (titulo, callback)
 	events.findOne({titulo:titulo}, function(e,o){callback(o);});
 }
 
+exports.getEventBySala = function (sala,callback)
+{
+	events.findOne({sala:sala}, function(e,o){callback(o);});
+}
+
+
+
 exports.validateResetLink = function(email, passHash, callback)
 {
 	accounts.find({ $and: [{email:email, pass:passHash}] }, function(e, o){
 		callback(o ? 'ok' : null);
 	});
 }
+
+
 
 exports.getAllRecords = function(callback)
 {

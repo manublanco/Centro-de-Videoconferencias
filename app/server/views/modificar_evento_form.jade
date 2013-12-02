@@ -8,42 +8,46 @@
 //-
 
 
+
+
 // preset form values if we receive a userdata object //
 user = typeof(udata) != 'undefined' ? udata : { }
-//event = typeof(udata) != 'undefined' ? udata : { }
+evento = typeof(edata) != 'undefined' ? edata : { }
+
+
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
-//input(type='hidden', value= event._id)#eventId
+input(type='hidden', value= evento._id)#eventId
 
 
 #evento-form-container
 	form( method="post")#evento-form.form-horizontal.well.span6
-		h1 Crear Evento
-		p#sub1.subheading Formulario para la creación de un evento
+		h1 Modificar Evento
+		p#sub1.subheading Formulario para la modificacion de un evento
 		hr
 		fieldset
 			#titulo-cg.control-group
 				label.control-label(for='titulo-tf') Titulo
 				.controls
-					input#titulo-tf.input-xlarge(type='text', name='titulo')
+					input#titulo-tf.input-xlarge(type='text', name='titulo', value=evento.titulo)
 			#descripcion-cg.control-group
 				label.control-label(for='descripcion-tf') Descripción
 				.controls
-					textarea#descripcion-tf.input-xlarge(type='text', name='descripcion')
+					input#descripcion-tf.input-xlarge(type='text', name='descripcion', value=evento.descripcion)
 			#fecha-cg.control-group
 				label.control-label(for='fecha-tf') Fecha 
 				.controls
-					input#fecha-tf.input(type='date', name='fecha')	
-					input#array-tf.input.hide(type='text', name='array_invitados')
-	
+					input#fecha-tf.input(type='date', name='fecha', value=evento.fecha)	
+					input#array-tf.input.hide(type='text', name='array_invitados', value=evento.invitados)
+
 				label.control-label(for='hora-tf') Hora 
 				.controls	
-					input#hora-tf.input(type='time', name='hora', value='10:00')
+					input#hora-tf.input(type='time', name='hora', value=evento.hora)
 			#invitado-cg.control-group
-				label.control-label(for='invitado-tf')	Añadir Invitados
+				label.control-label(for='invitado-tf')	Añadir mas Invitados 
 				.controls
 					input#invitado-tf.input(type='email', name='invitado', onclick="this.value=''")
-					input(type='button', onclick='anhadirInvitado()', value='Añadir Invitado')
+					input(type='button', onclick='anhadirInvitadomod()', value='Añadir Invitado')
 					
 					#box
 					

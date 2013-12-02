@@ -9,8 +9,8 @@
 
 $(document).ready(function(){
 
-	var hc = new eventoController();
-	var av = new EventoValidator();
+	var hc = new modificarEventoController();
+	var av = new modificarEventoValidator();
 
 
 	
@@ -26,39 +26,23 @@ $(document).ready(function(){
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') hc.onCreateSuccess();
+			if (status == 'success') hc.onUpdateSuccess();
 		},
 		error : function(e){
-			//if (e.responseText == 'email-taken'){
-			  //  av.showInvalidEmail();
-			//}	else if (e.responseText == 'username-taken'){
-			  //  av.showInvalidUserName();
-			//}
 		}
 	});
 
-	var date = new Date();
-
-	var day = date.getDate();
-	var month = date.getMonth() + 1;
-	var year = date.getFullYear();
-
-	if (month < 10) month = "0" + month;
-	if (day < 10) day = "0" + day;
-
-	var today = year + "-" + month + "-" + day;       
-	document.getElementById("fecha-tf").value = today;
-	document.getElementById("fecha-tf").min = today;
 
      
 
 // customize the account settings form //
 	
-	$('#evento-form h1').text('Crear Evento');
-	$('#evento-form #sub1').text('Formulario para la creación de un evento.');
+	$('#evento-form h1').text('Modificar Evento');
+	window.onload=guardar_invitados_previos();
+	$('#evento-form #sub1').text('Formulario para la modificación de un evento.');
 	$('#user-tf').attr('disabled', 'desactivado');
 	$('#evento-form-btn1').html('Cancelar');
-	$('#evento-form-btn2').html('Crear Evento');
+	$('#evento-form-btn2').html('Actualizar');
 
 
 

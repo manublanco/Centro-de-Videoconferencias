@@ -23,35 +23,22 @@ block content
 				button#btn-logout.btn.btn-primary
 					i.icon-lock.icon-white
 					| Salir
-	
-					user = typeof(udata) != 'undefined' ? udata : { }			
-		div#vidcontainer.container
-		div.row
-			div#video_grid.span9
 
-			div#chat.span3.visible-desktop
-				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 
-				div#chat_body
-					input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
-			
-			div#users.span3
+	include modificar_evento_form
 
-				button(type='button', onclick= 'mod_evento()')#modificar-evento.btn Modificar
-				#Soy el gestor!!!
-				#eventTitle Titulo:
-				#eventDescription Descripción:
-				#Fecha Fecha
-				#Hora Hora
-				#Invitados Invitados Conectados:
-				
+	include modals/alert
+	include modals/confirm
 
 block scripts
 	script(src='/vendor/jquery.min.js')
 	script(src='/vendor/jquery.form.js')
 	script(src='/vendor/bootstrap-modal.js')
 	script(src='/vendor/bootstrap-transition.js')
-	script(src='/js/erizo.js')
-	script(src='/js/evento_script.js')
+	script(src='/js/views/modificar_evento.js')
 	script(src='/js/controllers/modificarEventoController.js')
 	script(src='/js/form-validators/modificarEventoValidator.js')
+
+
+	
+	
