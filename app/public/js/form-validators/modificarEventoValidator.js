@@ -54,12 +54,12 @@ modificarEventoValidator.prototype.validateForm = function()
 	var e = [];
 	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
 	if (this.validateTitulo(this.formFields[0].val()) == false) {
-		this.controlGroups[0].addClass('error'); e.push('Por favor,introduzca un titulo');
+		this.controlGroups[0].addClass('error'); e.push('Por favor,introduzca un titulo de al menos 3 caracteres');
 	}
 	
 	if (this.validateDescripcion(this.formFields[1].val()) == false) {
 		this.controlGroups[1].addClass('error');
-		e.push('Ponga una descripción del evento');
+		e.push('Ponga una descripción del evento de al menos 10 caracteres');
 	}
 
 
@@ -101,7 +101,7 @@ function mod_evento()
       Separ = Variables[i].split('=');
       eval ('var '+Separ[0]+'="'+Separ[1]+'"');
     }
-  window.top.location.replace("http://localhost:3001/modificar_evento?roomId="+roomId);
+  window.top.location.assign("http://localhost:3001/modificar_evento?roomId="+roomId);
 
   }
 }

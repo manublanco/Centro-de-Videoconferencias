@@ -61,12 +61,21 @@ module.exports = function(app) {
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.render('home', {
+
+	    	var gestor = req.session.user.user;
+	    	console.log('gestorrr',gestor);
+	    	AM.getEventByGestor(gestor,function(a){
+	    		console.log('aaaaaaaaaaaa',a);
+	    		var events= a;
+	    		console.log('eventooooos',events);
+				res.render('home', {
 				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
+				udata : req.session.user,
+				eventos_creados: events
+
 			});
-	    }
+	    });
+	}
 	});
 	
 	app.post('/home', function(req, res){
@@ -232,7 +241,7 @@ app.get('/datos-usuario', function(req, res) {
 	        res.redirect('/');
 	    }   else{
  				
-	    	var sala = String(req.query.roomId);
+	    	var sala = req.query.roomId;
 	    	console.log('salaaaa     '+sala);
 
 	    	AM.getEventBySala(sala, function(a){
@@ -252,8 +261,6 @@ app.get('/datos-usuario', function(req, res) {
 	app.post('/modificar_evento', function(req, res){
 		if (req.param('user') != undefined) {
 			var sala = String(req.query.roomId);
-
-
 			AM.updateEvent(sala,{
 				titulo 			: req.param('titulo'),
 				gestor			: req.param('user'),
@@ -310,6 +317,28 @@ app.get('/datos-usuario', function(req, res) {
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		}
 	});
+
+
+	app.post('/deleteEvent', function(req, res){
+		console.log('useeeeer',req.session.user.user);
+		if (req.session.user.user != undefined) {
+         N.API.deleteRoom(req.body.sala, function(result) {
+			AM.deleteEvent(req.body.sala, function(e, obj){
+				if (!e){
+					res.send('ok', 200);
+
+				}	else{
+					res.send('record not found', 400);
+				}
+			});
+		});
+		   } else if (req.param('logout') == 'true'){
+					res.clearCookie('user');
+					res.clearCookie('pass');
+					req.session.destroy(function(e){ res.send('ok', 200); });
+			}
+	});
+		
 
 
 //Sala evento
@@ -493,6 +522,9 @@ app.get('/datos-usuario', function(req, res) {
 			}
 	    });
 	});
+
+
+
 	
 	app.get('/reset', function(req, res) {
 		AM.delAllRecords(function(){

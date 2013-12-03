@@ -15,22 +15,36 @@ function modificarEventoController()
 // bind event listeners to button clicks //
 	var that = this;
 
+
+
 // handle user logout //
 	$('#btn-logout').click(function(){ that.attemptLogout(); });
 
 // cancelar creacion evento //
-	$('#evento-form-btn1').click(function(){ window.location.href = '/';});
+	$('#evento-form-btn1').click(function(){ window.history.back();});
 
+//eliminar
+	$('#evento-form-btn0').click(function(){$('.modal-confirm').modal('show')});
 
+	//ok en eliminar
+	$('.modal-confirm .submit').click(function(){ that.deleteEvent(); });
 
-//submit crear evento
-//$('#evento-form-btn2').click(function(){$('.modal-confirm').modal('show')});
-
-
-$('.modal-confirm .submit').click(function(){ that.updateEvent();});
-//$('.modal-alert #ok').click(function(){ setTimeout(function(){window.location.href = '/';}, 300)});
-
-
+	this.deleteEvent = function()
+	{
+		$('.modal-confirm').modal('hide');
+		var that = this;
+		$.ajax({
+			url: '/deleteEvent',
+			type: 'POST',
+			data: { sala: $('#eventSala').val()},
+			success: function(data){
+	 			that.showLockedAlert('Su evento ha sido eliminado.<br>Redirigiendo a la pagina principal.');
+			},
+			error: function(jqXHR){
+				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
+			}
+		});
+	}
 
 	this.updateEvent = function()
 	{
@@ -74,7 +88,7 @@ $('.modal-confirm .submit').click(function(){ that.updateEvent();});
 		$('.modal-alert .modal-body p').html(msg);
 		$('.modal-alert').modal('show');
 		$('.modal-alert button').click(function(){window.location = '/';})
-		setTimeout(function(){window.location = '/';}, 30000);
+		setTimeout(function(){window.location = '/';}, 3000);
 	}
 }
 

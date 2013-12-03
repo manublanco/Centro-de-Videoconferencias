@@ -156,6 +156,13 @@ exports.deleteAccount = function(id, callback)
 	accounts.remove({_id: getObjectId(id)}, callback);
 }
 
+
+
+exports.deleteEvent = function(sala, callback)
+{
+	events.remove({sala:sala}, callback);
+}
+
 exports.getAccountByEmail = function(email, callback)
 {
 	accounts.findOne({email:email}, function(e, o){ callback(o); });
@@ -170,6 +177,16 @@ exports.getEventByTitulo = function (titulo, callback)
 {
 	events.findOne({titulo:titulo}, function(e,o){callback(o);});
 }
+
+exports.getEventByGestor = function (gestor, callback)
+{
+	events.find({gestor:gestor}).toArray(
+			function(e, res) {
+		if (e) callback(e)
+		else callback(null, res)
+	});}
+
+
 
 exports.getEventBySala = function (sala,callback)
 {

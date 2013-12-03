@@ -40,9 +40,9 @@ input(type='hidden', value= user._id)#userId
 				.controls	
 					input#hora-tf.input(type='time', name='hora', value='10:00')
 			#invitado-cg.control-group
-				label.control-label(for='invitado-tf')	Añadir Invitados
+				label.control-label(for='invitado-tf') Invitados
 				.controls
-					input#invitado-tf.input(type='email', name='invitado', onclick="this.value=''")
+					input#invitado-tf.input(type='email', name='invitado', placeholder='Añada el correo de un invitado', onclick="this.value=''")
 					input(type='button', onclick='anhadirInvitado()', value='Añadir Invitado')
 					
 					#box

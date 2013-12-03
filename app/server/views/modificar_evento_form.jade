@@ -17,7 +17,8 @@ evento = typeof(edata) != 'undefined' ? edata : { }
 
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
-input(type='hidden', value= evento._id)#eventId
+//input(type='hidden', value= evento._id)#eventId
+input(type='hidden', value= evento.sala)#eventSala
 
 
 #evento-form-container
@@ -58,8 +59,10 @@ input(type='hidden', value= evento._id)#eventId
 			hr
 			p#sub2.subheading
 			.form-actions
-				button(type='button')#evento-form-btn1.btn 
-				button(type='submit')#evento-form-btn2.btn 
+			button(type='button')#evento-form-btn0.btn.btn-danger Terminar 
+			button(type='submit')#evento-form-btn2.btn.pull-right.btn-primary
+			button(type='button')#evento-form-btn1.btn.pull-right 
+
 
 
 // display form errors in a custom modal window //

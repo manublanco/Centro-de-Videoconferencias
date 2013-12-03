@@ -45,5 +45,13 @@ $(document).ready(function(){
 	$('#evento-form-btn2').html('Actualizar');
 
 
+// setup the confirm window that displays when the user chooses to delete their account //
+
+	$('.modal-confirm').modal({ show : false, keyboard : true, backdrop : true });
+	$('.modal-confirm .modal-header h3').text('Borrar Cuenta');
+	$('.modal-confirm .modal-body p').html('¿ Esta seguro de eliminar su evento?');
+	$('.modal-confirm .cancel').html('Cancelar');
+	$('.modal-confirm .submit').html('Borrar');
+	$('.modal-confirm .submit').addClass('btn-danger');
 
 })
