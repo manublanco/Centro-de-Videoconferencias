@@ -55,18 +55,34 @@ body {
   position: relative;
   height: 550px;
 }
+#users {
+  position: relative;
+  height: 550px;
+  margin-top: 30px;
+  margin-left: 0px;
+}
 #video_grid {
   height: 550px;
   border: 1px solid #012c79;
-  margin-left: 40px;
+  margin-left: 35px;
   margin-top: 20px;
   background-color: #fff;
+}
+#datosEvento {
+  background-color: #fff;
+  bottom: 41px;
+  top: 100px;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #012c79;
+  width: 100%;
+  font-size: 14px;
 }
 #chat_body {
   background-color: #fff;
   position: absolute;
   bottom: 41px;
-  top: 50px;
+  top: 27px;
   padding: 10px;
   overflow-y: auto;
   border: 1px solid #012c79;

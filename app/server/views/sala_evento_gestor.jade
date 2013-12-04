@@ -24,7 +24,13 @@ block content
 					i.icon-lock.icon-white
 					| Salir
 	
-					user = typeof(udata) != 'undefined' ? udata : { }			
+					// preset form values if we receive a userdata object //
+					user = typeof(udata) != 'undefined' ? udata : { }
+					evento = typeof(edata) != 'undefined' ? edata : { }
+										// store the userId on the client side in a hidden input field //
+					input(type='hidden', value= user._id)#userId
+					//input(type='hidden', value= evento._id)#eventId
+					input(type='hidden', value= evento.sala)#eventSala		
 		div#vidcontainer.container
 		div.row
 			div#video_grid.span9
@@ -36,15 +42,35 @@ block content
 					input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
 			
 			div#users.span3
+				div#datosEvento
+					br
+					div#titulo 
+						b Titulo del Evento:
+							div#tituloEvento
+								input#titulo.input(type='text', name='titulo', value= evento.titulo, disabled='disabled')
 
-				button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-primary Modificar
-				#Soy el gestor!!!
-				#eventTitle Titulo:
-				#eventDescription Descripción:
-				#Fecha Fecha
-				#Hora Hora
-				#Invitados Invitados Conectados:
-				
+					div#descripcion
+						b Descripcion:
+							div#descripcionEvento
+								input#titulo.input.disabled(type='text', name='descripcion', value= evento.descripcion, disabled='disabled')
+
+					div#Fecha 
+						b Fecha de inicio:
+							div#fechaEvento
+								input#titulo.input.disabled(type='text', name='titulo', value= evento.fecha, disabled='disabled')
+
+					div#Hora 
+						b Hora:
+							div#horaEvento
+								input#titulo.input.disabled(type='text', name='titulo', value= evento.hora, disabled='disabled')
+
+
+					button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-primary.pull-right Modificar
+				#Soy GESTION DEL EVENTO
+
+		
+
+
 
 block scripts
 	script(src='/vendor/jquery.min.js')

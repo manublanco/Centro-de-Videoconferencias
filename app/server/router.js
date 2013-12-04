@@ -349,12 +349,16 @@ app.get('/datos-usuario', function(req, res) {
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.render('sala_evento', {
+		    	var sala = req.query.roomId;
+	    	AM.getEventBySala(sala,function(a){
+	    		evento = a;
+				res.render('sala_evento', {
 				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
+				udata : req.session.user,
+				edata : evento
 			});
-	    }
+	    });
+	}
 	});
 	
 	app.post('/sala_evento', function(req, res){
@@ -391,13 +395,19 @@ app.get('/datos-usuario', function(req, res) {
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.render('sala_evento_gestor', {
+	    	var sala = req.query.roomId;
+	    	AM.getEventBySala(sala,function(a){
+	    		evento = a;
+				res.render('sala_evento_gestor', {
 				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
+				udata : req.session.user,
+				edata : evento
 			});
-	    }
+	    });
+	}
 	});
+
+
 	
 	app.post('/sala_evento_gestor', function(req, res){
 		if (req.param('user') != undefined) {
