@@ -47,7 +47,7 @@ EM.enviarInvitacion = function(events, callback)
 {
 	EM.server.send({
 		from         : ES.sender,
-		to           : events.invitados,
+		to           : events.invitados.toString(),
 		subject      : 'Invitacion a Evento',
 		text         : 'Algo fue mal... :(',
 		attachment   : EM.emailInvitacion(events)

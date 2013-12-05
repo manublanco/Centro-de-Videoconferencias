@@ -39,7 +39,10 @@ app.configure(function(){
 	app.use(express.session({ secret: 'super-duper-secret-secret' }));
 	app.use(express.methodOverride());
 	app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
-	app.use(express.static(__dirname + '/app/public'));
+	app.use(express.static(__dirname + '/app/public/'));
+    app.use('/app/public', express.static(__dirname + "/app/public"));
+
+
     app.use(express.logger());
 
 

@@ -74,7 +74,7 @@ function anhadirInvitadomod()
 
 
      var x = document.getElementById("box");
-     array_invitados.push(document.getElementById("invitado-tf").value);
+     array_invitados.push(' '+document.getElementById("invitado-tf").value);
      x.innerHTML = array_invitados.join('<br/>'); 
 
      console.log(window.array_invitados);
@@ -84,6 +84,8 @@ function anhadirInvitadomod()
  
 
    }	
+
+ 
 function guardar_invitados_previos()
 {
 	array_invitados.push(document.getElementById("array-tf").value);

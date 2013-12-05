@@ -27,18 +27,40 @@ block content
 					user = typeof(udata) != 'undefined' ? udata : { }
 	
 	
-		div#roomcontainer.container-fluid
-			div#salas.row-fluid
-				div.container.span2
-					h2 Salas publicas:
-				div.span4
-					div#room1.btn.btn-large.btn-block.btn-primary Sala 1
+		div#roomcontainer.container
+			div.hero-unit
+				h1 Centro de videoconferencias
+				h2 Proyecto Fin de carrera
+				h3 Ingenieria Informatica
+				img(src='./app/public/img/udc.png')#img
+				h4 Autor: Manuel J. Blanco Vecino 
+				h4 Directores: Francisco J. Novoa Manuel y Jesus Perez Rubio
+
+			div.row.container-fluid
+				div#columna_4.span4
 					br
-					div#room2.btn.btn-block.btn-large.btn-primary Sala 2
+					h3(align='center') Eventos Creados:
+
+				
+				div#columna_4.span4
 					br
-					div#room3.btn.btn-block.btn-large.btn-primary Sala 3
+					h3(align='center') Invitaciones a eventos:
+
+				
+				div#columna_4.span4
 					br
-					div#room4.btn.btn-block.btn-large.btn-primary Sala 4
+					h3(align='center') Salas publicas:
+					br
+					div
+						div#room1.btn.btn-large.btn-block.btn-primary Sala 1
+					div
+						div#room2.btn.btn-block.btn-large.btn-primary Sala 2
+					div
+						div#room3.btn.btn-block.btn-large.btn-primary Sala 3
+					div
+						div#room4.btn.btn-block.btn-large.btn-primary Sala 4
+
+
 					
 
 		div#vidcontainer.container.hide

@@ -41,12 +41,12 @@ block content
 				div#chat_body
 				input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
 			
-			div#users.span3
+			div#datos.span3
 				div#datosEvento
 					br
 					div#titulo 
 						b Titulo del Evento:
-							div#tituloEvento
+							div#tituloEvento 
 								input#titulo.input.disabled(type='text', name='titulo', value= evento.titulo, disabled='disabled')
 
 					div#descripcion
@@ -63,7 +63,13 @@ block content
 						b Hora:
 							div#horaEvento
 								input#titulo.input.disabled(type='text', name='titulo', value= evento.hora, disabled='disabled')
+			
+				div#users
+					h4(align='center') Usuarios Conectados
+					div#proba
+						ul#listaUsuarios 
 
+								
 
 
 		

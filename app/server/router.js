@@ -63,7 +63,7 @@ module.exports = function(app) {
 	    }   else{
 
 	    	var gestor = req.session.user.user;
-	    	console.log('gestorrr',gestor);
+	    	//console.log('gestorrr',gestor);
 	    	AM.getEventByGestor(gestor,function(a){
 	    		console.log('aaaaaaaaaaaa',a);
 	    		var events= a;
@@ -169,6 +169,8 @@ app.get('/datos-usuario', function(req, res) {
 	
 	app.post('/crear-evento', function(req, res){
 		if (req.param('user') != undefined) {
+			var invitados_array = req.param('array_invitados').split(",");
+			console.log('invitados arrayyyyy', invitados_array);
 		
 		N.API.createRoom('id_sala', function (roomID) {
 	            id_sala = roomID._id;
@@ -180,7 +182,7 @@ app.get('/datos-usuario', function(req, res) {
 				fecha 			: req.param('fecha'),
 				hora 			: req.param('hora'),
 				sala 			: id_sala,
-				invitados		: req.param('array_invitados')
+				invitados		: invitados_array
 			}, function(e, o){
 				if (e){
 					res.send('error-creando-evento', 400);
@@ -201,6 +203,8 @@ app.get('/datos-usuario', function(req, res) {
 						}
 					});
 						EM.enviarInvitacion(o,function (e,m){	
+							console.log('ooooooooooooooooo',o);
+
 						// this callback takes a moment to return //
 						// should add an ajax loader to give user feedback //
 						if (!e) {
@@ -260,6 +264,10 @@ app.get('/datos-usuario', function(req, res) {
 	
 	app.post('/modificar_evento', function(req, res){
 		if (req.param('user') != undefined) {
+			
+			var invitados_array = req.param('array_invitados').split(",");
+			console.log('invitados arrayyyyy', invitados_array);
+
 			var sala = String(req.query.roomId);
 			AM.updateEvent(sala,{
 				titulo 			: req.param('titulo'),
@@ -267,7 +275,7 @@ app.get('/datos-usuario', function(req, res) {
 				descripcion 	: req.param('descripcion'),
 				fecha 			: req.param('fecha'),
 				hora 			: req.param('hora'),
-				invitados		: req.param('array_invitados')
+				invitados		: invitados_array
 			}, function(e, o){
 				if (e){
 					res.send('error-modificando-evento', 400);
@@ -391,21 +399,43 @@ app.get('/datos-usuario', function(req, res) {
 
 	
 	app.get('/sala_evento_gestor', function(req, res) {
-	    if (req.session.user == null){
-	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
-	    	var sala = req.query.roomId;
-	    	AM.getEventBySala(sala,function(a){
-	    		evento = a;
-				res.render('sala_evento_gestor', {
-				title : 'Control Panel',
-				udata : req.session.user,
-				edata : evento
-			});
-	    });
-	}
+
+		if (req.session.user == null){
+			res.redirect('/');
+
+		} 
+		else{ 
+
+		var gestor = req.session.user.user;
+		var sala = req.query.roomId;
+
+		console.log('gestoooor',gestor);
+
+
+		AM.getEventByGestorAndSala(gestor,sala,function(a){
+				var x = a;;
+				console.log('xxxxxxxx',x);
+			//	console.log('eventoooooooooooooooooooooooooo',evento.gestor);
+ 			if (typeof x !== undefined){
+ 				if (x !== null){
+ 				if (req.session.user.user == a.gestor){
+ 					res.render('sala_evento_gestor', {
+					title : 'Control Panel',
+					udata : req.session.user,
+					edata : x
+					});	
+		  	  }
+		  	}
+
+		  	else {
+		  		 res.redirect('/');					  		  
+		  	}
+		  }
+		    });  
+		}
 	});
+
+
 
 
 	

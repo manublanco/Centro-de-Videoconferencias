@@ -84,17 +84,21 @@ try{
 var displayUsers = function(userList) {
 
         users = JSON.parse(userList);
-        var usuariosOnline = document.getElementById("usuarios");
+       // var usuariosOnline = document.getElementById("listaUsuarios").getElementsByTagName("li");
 
         for (var i = 0; i < users.length; i++) {
             console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
+            var usuariosOnline = document.getElementById("listaUsuarios").getElementsByTagName("li");
 
-            //usuariosOnline.childNodes[i].innerText = users[i].name;
+            usuariosOnline[i].innerHTML = "<li>   " + users[i].name+"</li>" ;
+
         }
 };
-               
-
-
+  /*             
+var lis = document.getElementById("uid").getElementsByTagName("li");
+for(var i = 0; i < lis.length; i++)
+    lis[i].innerHTML = "<i>Hello "+lis[i].innerHTML+", have a nice day!</i>";
+*/
 //CHAT
 
       messText.onkeyup = function(e) {

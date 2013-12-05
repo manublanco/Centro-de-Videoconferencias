@@ -86,10 +86,13 @@ EventoValidator.prototype.validateForm = function()
 function anhadirInvitado()
    {
 
-   	//array_invitados=document.getElementById("array-tf").value;
 
      var x = document.getElementById("box");
-     array_invitados.push(document.getElementById("invitado-tf").value);
+     var space = " ";
+     var valor = document.getElementById("invitado-tf").value;
+     var res = space.concat(valor);
+     console.log (res);
+     array_invitados.push(res);
      x.innerHTML = array_invitados.join('<br/>'); 
 
      console.log(window.array_invitados);
