@@ -89,27 +89,7 @@ exports.addNewEvent = function(newEventData, callback)
 
 	accounts.findOne({user: newEventData.user},function(e,o){
 		
-		//events.insert(newEventData, {safe: true}, callback);
-
-		o.titulo 		= newEventData.titulo;
-		o.gestor 		= newEventData.gestor;
-		o.descripcion 	= newEventData.descripcion;
-		o.fecha			= newEventData.fecha;
-		o.hora			= newEventData.hora;
-		o.sala 			= newEventData.sala;
-
-		if (newData.invitados == ''){
-			events.save(o,{safe: true}, function(err){
-				if (err) callback(err);
-				else callback(null,o);
-			});
-		} else{
-			o.invitados = newEventData.invitados;
-			accounts.save(o,{safe: true}, function(err) {
-				if (err) callback(err);
-				else callback(null,o);
-			});
-		}
+		events.insert(newEventData, {safe: true}, callback);
 
 		
 	});	
