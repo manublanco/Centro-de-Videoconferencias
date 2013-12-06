@@ -26,22 +26,22 @@ function salaEventoController()
 			type: "POST",
 			data: {logout : true},
 			success: function(data){
-	 			that.showLockedAlert('Ahora esta desconectado.<br>Redirigiendo a la pagina principal.');
+				that.showLockedAlert('Ahora esta desconectado.<br>Redirigiendo a la pagina principal.');
 			},
 			error: function(jqXHR){
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
 			}
 		});
-	}
+	};
 
 	this.showLockedAlert = function(msg){
 		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
 		$('.modal-alert .modal-header h3').text('Correcto!');
 		$('.modal-alert .modal-body p').html(msg);
 		$('.modal-alert').modal('show');
-		$('.modal-alert button').click(function(){window.location.href = '/';})
+		$('.modal-alert button').click(function(){window.location.href = '/';});
 		setTimeout(function(){window.location.href = '/';}, 3000);
-	}
+	};
 }
 
 

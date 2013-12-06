@@ -249,4 +249,4 @@ module.exports = [
     {short:"YU" , name:"Yugoslavia"},
     {short:"ZM" , name:"Zambia"},
     {short:"ZW" , name:"Zimbabwe"}
-]
+];

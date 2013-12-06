@@ -22,7 +22,7 @@ function salaEventoValidator(){
 	this.validateName = function(s)
 	{
 		return s.length >= 3;
-	}
+	};
 	
 	this.validatePassword = function(s)
 	{
@@ -32,13 +32,13 @@ function salaEventoValidator(){
 		}	else{
 			return s.length >= 6;
 		}
-	}
+	};
 	
 	this.validateEmail = function(e)
 	{
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(e);
-	}
+	};
 	
 	this.showErrors = function(a)
 	{
@@ -47,7 +47,7 @@ function salaEventoValidator(){
 			ul.empty();
 		for (var i=0; i < a.length; i++) ul.append('<li>'+a[i]+'</li>');
 		this.alert.modal('show');
-	}
+	};
 
 }
 

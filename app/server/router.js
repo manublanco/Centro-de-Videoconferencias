@@ -11,7 +11,7 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 var N = require('./../../nuve');
-var EV = require('./../public/js/form-validators/eventoValidator')
+var EV = require('./../public/js/form-validators/eventoValidator');
 
 
 
@@ -24,13 +24,13 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res){
 	// check if the user's credentials are saved in a cookie //
-		if (req.cookies.user == undefined || req.cookies.pass == undefined){
+		if (req.cookies.user === undefined || req.cookies.pass === undefined){
 			res.render('login', { title: 'Hello - Please Login To Your Account' });
 		}	else{
 	// attempt automatic login //
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
-				if (o != null){
-				    req.session.user = o;
+				if (o !== null){
+					req.session.user = o;
 					res.redirect('/home');
 				}	else{
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
@@ -44,7 +44,7 @@ module.exports = function(app) {
 			if (!o){
 				res.send(e, 400);
 			}	else{
-			    req.session.user = o;
+				req.session.user = o;
 				if (req.param('remember-me') == 'true'){
 					res.cookie('user', o.user, { maxAge: 900000 });
 					res.cookie('pass', o.pass, { maxAge: 900000 });
@@ -57,42 +57,42 @@ module.exports = function(app) {
 // logged-in user homepage //
 	
 	app.get('/home', function(req, res) {
-	    if (req.session.user == null){
+		if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
+			res.redirect('/');
+		}else{
 
-	    	var gestor = req.session.user.user;
-	    	//console.log('gestorrr',gestor);
-	    	AM.getEventByGestor(gestor,function(a){
-	    		console.log('aaaaaaaaaaaa',a);
-	    		var events= a;
-	    		console.log('eventooooos',events);
+			var gestor = req.session.user.user;
+			//console.log('gestorrr',gestor);
+			AM.getEventByGestor(gestor,function(a){
+				console.log('aaaaaaaaaaaa',a);
+				var events= a;
+				console.log('eventooooos',events);
 				res.render('home', {
 				title : 'Control Panel',
 				udata : req.session.user,
 				eventos_creados: events
 
 			});
-	    });
+		});
 	}
 	});
 	
 	app.post('/home', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			AM.updateAccount({
-				user 		: req.param('user'),
-				name 		: req.param('name'),
-				email 		: req.param('email'),
-				country 	: req.param('country'),
-				pass		: req.param('pass')
+				user        : req.param('user'),
+				name		: req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
+				pass        : req.param('pass')
 			}, function(e, o){
 				if (e){
 					res.send('error-updating-account', 400);
 				}	else{
 					req.session.user = o;
 			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
 						res.cookie('user', o.user, { maxAge: 900000 });
 						res.cookie('pass', o.pass, { maxAge: 900000 });	
 					}
@@ -109,33 +109,33 @@ module.exports = function(app) {
 //datos usuario //
 
 app.get('/datos-usuario', function(req, res) {
-	    if (req.session.user == null){
+	if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
+	res.redirect('/');
+	}else{
 			res.render('datos-usuario', {
 				title : 'Control Panel',
 				countries : CT,
 				udata : req.session.user
 			});
-	    }
+		}
 	});
 	
 	app.post('/datos-usuario', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			AM.updateAccount({
-				user 		: req.param('user'),
-				name 		: req.param('name'),
-				email 		: req.param('email'),
-				country 	: req.param('country'),
-				pass		: req.param('pass')
+				user        : req.param('user'),
+				name        : req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
+				pass        : req.param('pass')
 			}, function(e, o){
 				if (e){
 					res.send('error-updating-account', 400);
 				}	else{
 					req.session.user = o;
 			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
 						res.cookie('user', o.user, { maxAge: 900000 });
 						res.cookie('pass', o.pass, { maxAge: 900000 });	
 					}
@@ -153,43 +153,43 @@ app.get('/datos-usuario', function(req, res) {
 //crear Evento
 
 	app.get('/crear-evento', function(req, res) {
-		    if (req.session.user == null){
+		if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
+		res.redirect('/');
+		}else{
 			res.render('crear-evento', {
 				title : 'Crear Evento',
 				countries : CT,
 				udata : req.session.user
 			});
-	    }
+		}
 	});
 
 	
 	
 	app.post('/crear-evento', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			var invitados_array = req.param('array_invitados').split(",");
 			console.log('invitados arrayyyyy', invitados_array);
 		
 		N.API.createRoom('id_sala', function (roomID) {
-	            id_sala = roomID._id;
-	            console.log('Created room ', id_sala);
+				id_sala = roomID._id;
+				console.log('Created room ', id_sala);
 			AM.addNewEvent({
-				titulo 			: req.param('titulo'),
+				titulo          : req.param('titulo'),
 				gestor			: req.param('user'),
-				descripcion 	: req.param('descripcion'),
-				fecha 			: req.param('fecha'),
-				hora 			: req.param('hora'),
-				sala 			: id_sala,
+				descripcion     : req.param('descripcion'),
+				fecha           : req.param('fecha'),
+				hora            : req.param('hora'),
+				sala            : id_sala,
 				invitados		: invitados_array
 			}, function(e, o){
 				if (e){
 					res.send('error-creando-evento', 400);
 				}	else{
 					AM.getEmailByUser(req.param('user'),function(a){
-						     email = a.email;
-						     console.log('email',email);
+						email = a.email;
+						console.log('email',email);
 						AM.getEventByTitulo(req.param('titulo'), function(o){
 
 						EM.enviarConfirmacionEventoCreado(o,email,function(e,m){
@@ -199,7 +199,7 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('ok', 200);
 						}	else{
 							res.send('email-server-error', 400);
-							for (k in e) console.log('error : ', k, e[k]);
+							for (var k in e) console.log('error : ', k, e[k]);
 						}
 					});
 						EM.enviarInvitacion(o,function (e,m){	
@@ -211,7 +211,7 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('ok', 200);
 						}	else{
 							res.send('email-server-error', 400);
-							for (k in e) console.log('error : ', k, e[k]);
+							for (var k in e) console.log('error : ', k, e[k]);
 						}
 					});
 
@@ -224,7 +224,7 @@ app.get('/datos-usuario', function(req, res) {
 					res.send('ok', 200);
 							});
 						});
-			    	}	
+					}	
 
 			});
 		});
@@ -240,49 +240,48 @@ app.get('/datos-usuario', function(req, res) {
 
 
 	app.get('/modificar_evento', function(req, res) {
-		    if (req.session.user == null){
+		if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
- 				
-	    	var sala = req.query.roomId;
-	    	console.log('salaaaa     '+sala);
+			res.redirect('/');
+		}else{
+			var sala = req.query.roomId;
+			console.log('salaaaa     '+sala);
 
-	    	AM.getEventBySala(sala, function(a){
-	    		evento=a;
+			AM.getEventBySala(sala, function(a){
+				evento=a;
 
-	    		res.render('modificar_evento', {
+				res.render('modificar_evento', {
 				title : 'Modificar evento',
 				countries : CT,
 				edata : evento
 				});
-	    	});	
-	    }
+			});	
+		}
 	});
 
 	
 	
 	app.post('/modificar_evento', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			
 			var invitados_array = req.param('array_invitados').split(",");
 			console.log('invitados arrayyyyy', invitados_array);
 
 			var sala = String(req.query.roomId);
 			AM.updateEvent(sala,{
-				titulo 			: req.param('titulo'),
+				titulo          : req.param('titulo'),
 				gestor			: req.param('user'),
-				descripcion 	: req.param('descripcion'),
-				fecha 			: req.param('fecha'),
-				hora 			: req.param('hora'),
+				descripcion     : req.param('descripcion'),
+				fecha           : req.param('fecha'),
+				hora            : req.param('hora'),
 				invitados		: invitados_array
 			}, function(e, o){
 				if (e){
 					res.send('error-modificando-evento', 400);
 				}	else{
 					AM.getEmailByUser(o.gestor,function(a){
-						    var email = a.email;
-						     console.log('email',email);
+						var email = a.email;
+						console.log('email',email);
 						AM.getEventByTitulo(req.param('titulo'), function(o){
 
 						EM.enviarModificacionEvento(o,email,function(e,m){
@@ -292,7 +291,7 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('ok', 200);
 						}	else{
 							res.send('email-server-error', 400);
-							for (k in e) console.log('error : ', k, e[k]);
+							for (var k in e) console.log('error : ', k, e[k]);
 						}
 					});
 						EM.enviarInvitacion(o,function (e,m){	
@@ -302,7 +301,7 @@ app.get('/datos-usuario', function(req, res) {
 							res.send('ok', 200);
 						}	else{
 							res.send('email-server-error', 400);
-							for (k in e) console.log('error : ', k, e[k]);
+							for (var k in e) console.log('error : ', k, e[k]);
 						}
 					});
 
@@ -315,7 +314,7 @@ app.get('/datos-usuario', function(req, res) {
 					res.send('ok', 200);
 							});
 						});
-			    	}	
+					}	
 
 			});
 	}
@@ -329,7 +328,7 @@ app.get('/datos-usuario', function(req, res) {
 
 	app.post('/deleteEvent', function(req, res){
 		console.log('useeeeer',req.session.user.user);
-		if (req.session.user.user != undefined) {
+		if (req.session.user.user !== undefined) {
          N.API.deleteRoom(req.body.sala, function(result) {
 			AM.deleteEvent(req.body.sala, function(e, obj){
 				if (!e){
@@ -340,7 +339,7 @@ app.get('/datos-usuario', function(req, res) {
 				}
 			});
 		});
-		   } else if (req.param('logout') == 'true'){
+     }else if (req.param('logout') == 'true'){
 					res.clearCookie('user');
 					res.clearCookie('pass');
 					req.session.destroy(function(e){ res.send('ok', 200); });
@@ -353,29 +352,29 @@ app.get('/datos-usuario', function(req, res) {
 
 	
 	app.get('/sala_evento', function(req, res) {
-	    if (req.session.user == null){
+		if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
-		    	var sala = req.query.roomId;
-	    	AM.getEventBySala(sala,function(a){
-	    		evento = a;
+			res.redirect('/');
+		}else{
+			var sala = req.query.roomId;
+			AM.getEventBySala(sala,function(a){
+				evento = a;
 				res.render('sala_evento', {
 				title : 'Control Panel',
 				udata : req.session.user,
 				edata : evento
 			});
-	    });
+		});
 	}
 	});
 	
 	app.post('/sala_evento', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			AM.updateAccount({
-				user 		: req.param('user'),
-				name 		: req.param('name'),
-				email 		: req.param('email'),
-				country 	: req.param('country'),
+				user        : req.param('user'),
+				name        : req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
 				pass		: req.param('pass')
 			}, function(e, o){
 				if (e){
@@ -383,7 +382,7 @@ app.get('/datos-usuario', function(req, res) {
 				}	else{
 					req.session.user = o;
 			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
 						res.cookie('user', o.user, { maxAge: 900000 });
 						res.cookie('pass', o.pass, { maxAge: 900000 });	
 					}
@@ -400,7 +399,7 @@ app.get('/datos-usuario', function(req, res) {
 	
 	app.get('/sala_evento_gestor', function(req, res) {
 
-		if (req.session.user == null){
+		if (req.session.user === null){
 			res.redirect('/');
 
 		} 
@@ -413,39 +412,39 @@ app.get('/datos-usuario', function(req, res) {
 
 
 		AM.getEventByGestorAndSala(gestor,sala,function(a){
-				var x = a;;
+				var x = a;
 				console.log('xxxxxxxx',x);
 			//	console.log('eventoooooooooooooooooooooooooo',evento.gestor);
- 			if (typeof x !== undefined){
- 				if (x !== null){
- 				if (req.session.user.user == a.gestor){
- 					res.render('sala_evento_gestor', {
-					title : 'Control Panel',
-					udata : req.session.user,
-					edata : x
-					});	
-		  	  }
-		  	}
+			if (typeof x !== undefined){
+				if (x !== null){
+					if (req.session.user.user == a.gestor){
+						res.render('sala_evento_gestor', {
+							title : 'Control Panel',
+							udata : req.session.user,
+							edata : x
+						});	
+					}
+				}
 
-		  	else {
-		  		 res.redirect('/');					  		  
-		  	}
-		  }
-		    });  
+		else {
+		res.redirect('/');
 		}
-	});
+	}
+});  
+	}
+});
 
 
 
 
 	
 	app.post('/sala_evento_gestor', function(req, res){
-		if (req.param('user') != undefined) {
+		if (req.param('user') !== undefined) {
 			AM.updateAccount({
-				user 		: req.param('user'),
-				name 		: req.param('name'),
-				email 		: req.param('email'),
-				country 	: req.param('country'),
+				user        : req.param('user'),
+				name        : req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
 				pass		: req.param('pass')
 			}, function(e, o){
 				if (e){
@@ -453,7 +452,7 @@ app.get('/datos-usuario', function(req, res) {
 				}	else{
 					req.session.user = o;
 			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
 						res.cookie('user', o.user, { maxAge: 900000 });
 						res.cookie('pass', o.pass, { maxAge: 900000 });	
 					}
@@ -475,9 +474,9 @@ app.get('/datos-usuario', function(req, res) {
 	
 	app.post('/signup', function(req, res){
 		AM.addNewAccount({
-			name 	: req.param('name'),
-			email 	: req.param('email'),
-			user 	: req.param('user'),
+			name    : req.param('name'),
+			email   : req.param('email'),
+			user    : req.param('user'),
 			pass	: req.param('pass'),
 			country : req.param('country')
 		}, function(e){
@@ -505,7 +504,7 @@ app.get('/datos-usuario', function(req, res) {
 					//	res.send('ok', 200);
 					}	else{
 						res.send('email-server-error', 400);
-						for (k in e) console.log('error : ', k, e[k]);
+						for (var k in e) console.log('error : ', k, e[k]);
 					}
 				});
 			}	else{
@@ -515,8 +514,8 @@ app.get('/datos-usuario', function(req, res) {
 	});
 
 	app.get('/reset-password', function(req, res) {
-		var email = req.query["e"];
-		var passH = req.query["p"];
+		var email = req.query.e;
+		var passH = req.query.p;
 		AM.validateResetLink(email, passH, function(e){
 			if (e != 'ok'){
 				res.redirect('/');
@@ -525,7 +524,7 @@ app.get('/datos-usuario', function(req, res) {
 				req.session.reset = { email:email, passHash:passH };
 				res.render('reset', { title : 'Reset Password' });
 			}
-		})
+		});
 	});
 	
 	app.post('/reset-password', function(req, res) {
@@ -540,7 +539,7 @@ app.get('/datos-usuario', function(req, res) {
 			}	else{
 				res.send('unable to update password', 400);
 			}
-		})
+		});
 	});
 	
 // view & delete accounts //
@@ -548,7 +547,7 @@ app.get('/datos-usuario', function(req, res) {
 	app.get('/print', function(req, res) {
 		AM.getAllRecords( function(e, accounts){
 			res.render('print', { title : 'Account List', accts : accounts });
-		})
+		});
 	});
 	
 	app.post('/delete', function(req, res){
@@ -556,11 +555,11 @@ app.get('/datos-usuario', function(req, res) {
 			if (!e){
 				res.clearCookie('user');
 				res.clearCookie('pass');
-	            req.session.destroy(function(e){ res.send('ok', 200); });
+				req.session.destroy(function(e){ res.send('ok', 200); });
 			}	else{
 				res.send('record not found', 400);
 			}
-	    });
+		});
 	});
 
 

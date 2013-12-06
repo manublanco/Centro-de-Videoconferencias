@@ -16,11 +16,11 @@ $(document).ready(function(){
 
 	$('#login-form').ajaxForm({
 		beforeSubmit : function(formData, jqForm, options){
-			if (lv.validateForm() == false){
+			if (lv.validateForm() === false){
 				return false;
-			} 	else{
+			}else{
 			// append 'remember-me' option to formData to write local cookie //
-				formData.push({name:'remember-me', value:$("input:checkbox:checked").length == 1})
+				formData.push({name:'remember-me', value:$("input:checkbox:checked").length == 1});
 				return true;
 			}
 		},
@@ -56,4 +56,4 @@ $(document).ready(function(){
 		}
 	});
 	
-})
+});

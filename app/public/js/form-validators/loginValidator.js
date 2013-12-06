@@ -19,19 +19,19 @@ function LoginValidator(){
 		$('.modal-alert .modal-header h3').text(t);
 		$('.modal-alert .modal-body p').text(m);
 		this.loginErrors.modal('show');
-	}
+	};
 
 }
 
 LoginValidator.prototype.validateForm = function()
 {
-	if ($('#user-tf').val() == ''){
+	if ($('#user-tf').val() === ''){
 		this.showLoginError('Whoops!', 'Por favor, introduzca un nombre de usuario valido');
 		return false;
-	}	else if ($('#pass-tf').val() == ''){
+	}	else if ($('#pass-tf').val() === ''){
 		this.showLoginError('Whoops!', 'Por favor, introduzca una contraseña valida');
 		return false;
 	}	else{
 		return true;
 	}
-}
+};

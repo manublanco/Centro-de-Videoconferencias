@@ -23,23 +23,23 @@ ResetValidator.prototype.validatePassword = function(s)
 		this.showAlert('La contraseña debe tener al menos 6 caracteres.');
 		return false;
 	}
-}
+};
 
 ResetValidator.prototype.showAlert = function(m)
 {
 	this.setPasswordAlert.attr('class', 'alert alert-error');
 	this.setPasswordAlert.html(m);
 	this.setPasswordAlert.show();
-}
+};
 
 ResetValidator.prototype.hideAlert = function()
 {
     this.setPasswordAlert.hide();
-}
+};
 
 ResetValidator.prototype.showSuccess = function(m)
 {
 	this.setPasswordAlert.attr('class', 'alert alert-success');
 	this.setPasswordAlert.html(m);
 	this.setPasswordAlert.fadeIn(500);
-}
+};

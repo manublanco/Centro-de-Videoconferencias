@@ -33,7 +33,7 @@ var getRooms = function (callback){
 
     console.log("Sending to " + url);
     req.send();
-}
+};
 
 
 //Muestra las cuatro salas publicas disponibles
@@ -57,7 +57,7 @@ function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 
@@ -145,13 +145,13 @@ getRooms (displayRooms);
 
 //CHAT
 
-      messText.onkeyup = function(e) {
+      DEMO.messText.onkeyup = function(e) {
           e = e || event;
           if (e.keyCode === 13) {
               DEMO.send_chat_message();
           }
           return true;
-        }
+        };
 
     var add_text_to_chat = function(text, style) {
         var p = document.createElement('p');
@@ -159,19 +159,19 @@ getRooms (displayRooms);
         p.innerHTML = text;
         chat_body.appendChild(p);
         chat_body.scrollTop = chat_body.scrollHeight;
-    }
+    };
 
     DEMO.connect_to_chat = function() {
     add_text_to_chat('Conexion a la sala con exito', 'italic');
-    }
+    };
 
     DEMO.add_chat_participant = function(name) {
         add_text_to_chat('Nuevo participante: ' + name, 'italic');
-    }
+    };
 
      DEMO.remove_chat_participant = function(name) {
         add_text_to_chat('Ha salido de la sala: ' + name, 'italic');
-    }
+    };
 
     DEMO.send_chat_message = function() {
         if(messText.value.match (/\S/)) {
@@ -188,13 +188,13 @@ getRooms (displayRooms);
         var msg = evt.msg;
         add_text_to_chat(msg.name + ': ', 'name');
         add_text_to_chat(msg.msg, '');
-    }
+    };
 
     var connect_user = function () {
         $('#connection_panel').modal('hide');
         my_name = document.getElementById('username_txt').value;
         DEMO.init_demo(my_name);
-    }
+    };
 
 
 
@@ -285,7 +285,7 @@ getRooms (displayRooms);
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
 
-                    add_div_to_grid("test" + stream.getID())
+                    add_div_to_grid("test" + stream.getID());
                     stream.show("test" + stream.getID());
 
                     stream.addEventListener("stream-data", DEMO.chat_message_received);
@@ -315,7 +315,7 @@ getRooms (displayRooms);
 
                 room.connect();
 
-                add_div_to_grid("localVideo")
+                add_div_to_grid("localVideo");
                 localStream.show("localVideo");
 
 
@@ -325,7 +325,7 @@ getRooms (displayRooms);
 
             //interval=setInterval(checkUsers,10000);
             //getUsers(roomId,displayUsers);
-    }
+    };
 
 };
 
@@ -347,14 +347,14 @@ var add_div_to_grid = function(divId) {
 
     grid.appendChild(newDiv);   
     resizeGrid('video_grid');
-}
+};
 
 var remove_div_from_grid = function(divId) {
 
     var grid = document.getElementById('video_grid');
     grid.removeChild(document.getElementById(divId + '_container'));
     resizeGrid('video_grid');
-}
+};
 
 var resizeGrid = function() {
 
@@ -393,6 +393,6 @@ var resizeGrid = function() {
             }
         }
     }
-} 
+} ;
 
 

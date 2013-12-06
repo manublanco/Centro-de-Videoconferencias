@@ -26,18 +26,18 @@ function EventoValidator(){
 	this.validateTitulo = function(s)
 	{
 		return s.length >= 3;
-	}
+	};
 
 	this.validateDescripcion = function(s)
 	{
 		return s.length >= 10;
-	}
+	};
 
 	this.validateInvitados = function(s)
 	{
 		console.log('leeeeee',s.length);
 		return s.length > 1;
-	}
+	};
 
 	
 	
@@ -48,7 +48,7 @@ function EventoValidator(){
 			ul.empty();
 		for (var i=0; i < a.length; i++) ul.append('<li>'+a[i]+'</li>');
 		this.alert.modal('show');
-	}
+	};
 
 
 }
@@ -59,19 +59,19 @@ EventoValidator.prototype.validateForm = function()
 {
 	var e = [];
 	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
-	if (this.validateTitulo(this.formFields[0].val()) == false) {
+	if (this.validateTitulo(this.formFields[0].val()) === false) {
 		this.controlGroups[0].addClass('error'); e.push('Por favor,introduzca un titulo de al menos 3 caracteres');
 
 
 	}
 	
-	if (this.validateDescripcion(this.formFields[1].val()) == false) {
+	if (this.validateDescripcion(this.formFields[1].val()) === false) {
 		this.controlGroups[1].addClass('error');
 		e.push('Ponga una descripción del evento de al menos 10 caracteres');
 	}
 
 	var array_validate = document.getElementById('array-tf').value;
-	if (array_validate==''){
+	if (array_validate===''){
 		this.controlGroups[2].addClass('error');
 		e.push('Debe invitar al menos a una persona');
 	}
@@ -80,7 +80,7 @@ EventoValidator.prototype.validateForm = function()
 
 	if (e.length) this.showErrors(e);
 	return e.length === 0;
-}
+};
 
 
 function anhadirInvitado()

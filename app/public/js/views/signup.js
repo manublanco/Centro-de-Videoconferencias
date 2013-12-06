@@ -21,9 +21,9 @@ $(document).ready(function(){
 		},
 		error : function(e){
 			if (e.responseText == 'email-taken'){
-			    av.showInvalidEmail();
+				av.showInvalidEmail();
 			}	else if (e.responseText == 'username-taken'){
-			    av.showInvalidUserName();
+				av.showInvalidUserName();
 			}
 		}
 	});
@@ -44,4 +44,4 @@ $(document).ready(function(){
 	$('.modal-alert .modal-header h3').text('Correcto!');
 	$('.modal-alert .modal-body p').html('Su cuenta ha sido creada.</br>Pulsa OK para volver a la pagina de ingreso.');
 
-})
+});

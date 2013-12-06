@@ -91,7 +91,7 @@ function deleteAllRooms() {
                    return;
                    }
                    });
-};
+}
 
 
 

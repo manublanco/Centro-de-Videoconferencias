@@ -22,8 +22,7 @@ function eventoController()
 	$('#evento-form-btn1').click(function(){ window.location.href = '/';});
 
 //submit crear evento
-$('.modal-confirm .submit').click(function(){ that.createEvent();});
-//$('.modal-alert #ok').click(function(){ setTimeout(function(){window.location.href = '/';}, 300)});
+	$('.modal-confirm .submit').click(function(){ that.createEvent();});
 
 
 
@@ -36,7 +35,7 @@ $('.modal-confirm .submit').click(function(){ that.createEvent();});
 			type: 'POST',
 			//data: { id: $('#userId').val()},
 			success: function(data){
-	 			that.showLockedAlert('Su evento ha sido creado.<br>Regrese a la pagina principal.');
+				that.showLockedAlert('Su evento ha sido creado.<br>Regrese a la pagina principal.');
 			},
 
 
@@ -44,7 +43,7 @@ $('.modal-confirm .submit').click(function(){ that.createEvent();});
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
 			}
 		});
-	}
+	};
 
 
 	this.attemptLogout = function()
@@ -55,22 +54,22 @@ $('.modal-confirm .submit').click(function(){ that.createEvent();});
 			type: "POST",
 			data: {logout : true},
 			success: function(data){
-	 			that.showLockedAlert('Ahora esta desconectado.<br>Redirigiendo a la pagina principal.');
+				that.showLockedAlert('Ahora esta desconectado.<br>Redirigiendo a la pagina principal.');
 			},
 			error: function(jqXHR){
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
 			}
 		});
-	}
+	};
 
 	this.showLockedAlert = function(msg){
 		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
 		$('.modal-alert .modal-header h3').text('Correcto!');
 		$('.modal-alert .modal-body p').html(msg);
 		$('.modal-alert').modal('show');
-		$('.modal-alert button').click(function(){window.location = '/';})
+		$('.modal-alert button').click(function(){window.location = '/';});
 		setTimeout(function(){window.location = '/';}, 3000);
-	}
+	};
 }
 
 
@@ -81,6 +80,6 @@ eventoController.prototype.onCreateSuccess = function()
 	$('.modal-alert .modal-body p').html('Su evento ha sido creado.<br>Redirigiendo a la pagina principal.');
 	$('.modal-alert').modal('show');
 	$('.modal-alert button').off('click');
- 	setTimeout(function(){window.location.href = '/';}, 3000);
-}
+	setTimeout(function(){window.location.href = '/';}, 3000);
+};
 
