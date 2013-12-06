@@ -51,38 +51,7 @@ function salaEventoValidator(){
 
 }
 
-AccountValidator.prototype.showInvalidEmail = function()
-{
-	this.controlGroups[1].addClass('error');
-	this.showErrors(['Ese correo ya se encuentra en uso.']);
-}
 
-AccountValidator.prototype.showInvalidUserName = function()
-{
-	this.controlGroups[2].addClass('error');
-	this.showErrors(['El nombre de usuario ya existe.']);
-}
 
-AccountValidator.prototype.validateForm = function()
-{
-	var e = [];
-	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
-	if (this.validateName(this.formFields[0].val()) == false) {
-		this.controlGroups[0].addClass('error'); e.push('Por favor,introduzca su nombre');
-	}
-	if (this.validateEmail(this.formFields[1].val()) == false) {
-		this.controlGroups[1].addClass('error'); e.push('Por favor, ingrese un correo valido');
-	}
-	if (this.validateName(this.formFields[2].val()) == false) {
-		this.controlGroups[2].addClass('error');
-		e.push('Elija un nombre de usuario');
-	}
-	if (this.validatePassword(this.formFields[3].val()) == false) {
-		this.controlGroups[3].addClass('error');
-		e.push('La contraseña debe tener al menos 6 caracteres.');
-	}
-	if (e.length) this.showErrors(e);
-	return e.length === 0;
-}
 
 	

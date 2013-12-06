@@ -81,24 +81,61 @@ try{
 
 
 
+
+
 var displayUsers = function(userList) {
 
-        users = JSON.parse(userList);
-       // var usuariosOnline = document.getElementById("listaUsuarios").getElementsByTagName("li");
+    users = JSON.parse(userList);
 
-        for (var i = 0; i < users.length; i++) {
-            console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
-            var usuariosOnline = document.getElementById("listaUsuarios").getElementsByTagName("li");
+    document.getElementById("usuariosConectados").innerHTML = "";
 
-            usuariosOnline[i].innerHTML = "<li>   " + users[i].name+"</li>" ;
 
-        }
+    var test=document.getElementById('usuariosConectados');
+    
+
+
+
+    var ul=document.createElement('ul');
+
+
+
+    //test.appendChild(ul);
+
+
+    for (var i=0; i<users.length; i++){
+        console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
+
+        var li=document.createElement('li');
+
+        test.appendChild(li);
+        li.innerHTML=li.innerHTML + users[i].name;
+
+
+    }
+
+var limpiar_lista = function(){
+
+   var test= document.getElementById('usuariosConectados');
+   test.removeChild(ul);
+
+
+}
+
+
+
+
+
 };
-  /*             
-var lis = document.getElementById("uid").getElementsByTagName("li");
-for(var i = 0; i < lis.length; i++)
-    lis[i].innerHTML = "<i>Hello "+lis[i].innerHTML+", have a nice day!</i>";
-*/
+
+var checkUsers = function() {
+    getUsers(roomId, function(users) {
+        displayUsers(users);
+        //limpiar_lista();       
+    });
+};
+
+
+
 //CHAT
 
       messText.onkeyup = function(e) {
@@ -159,22 +196,18 @@ for(var i = 0; i < lis.length; i++)
 //Capta roomId de la url
 
     if(location.search.substr(1)){
-    Variables = location.search.substr(1).split ('&');
-    console.log('variableees',Variables);
-    for (i = 0; i < Variables.length; i++) {
-      Separ = Variables[i].split('=');
-      eval ('var '+Separ[0]+'="'+Separ[1]+'"');
-    }
 
-  }
+        Variables = location.search.substr(1).split ('&');
+        console.log('variableees',Variables);
+
+        for (i = 0; i < Variables.length; i++) {
+            Separ = Variables[i].split('=');
+            eval ('var '+Separ[0]+'="'+Separ[1]+'"');
+        }
+
+     }
 
 
-
-    var checkUsers = function() {
-        getUsers(roomId, function(users) {
-            displayUsers(users);       
-        });
-    };
 
 
 
@@ -256,8 +289,8 @@ for(var i = 0; i < lis.length; i++)
             localStream.init();
         });  
 
-            interval=setInterval(checkUsers,10000);
-            getUsers(roomId,displayUsers);
+            interval=setInterval(checkUsers,1000);
+            //clearInterval(interval);
     
 
 }
