@@ -15,8 +15,8 @@ function EventoValidator(){
 
 // build array maps of the form inputs & control groups //
 
-	this.formFields = [$('#titulo-tf'), $('#descripcion-tf'), $('invitado-tf'), $('#fecha-tf'), $('#hora-tf')];
-	this.controlGroups = [$('#titulo-cg'), $('#descripcion-cg'),$('#invitado-cg'), $('#fecha-cg')];
+	this.formFields = [$('#titulo-tf'), $('#descripcion-tf'), $('array-tf'), $('#fecha-tf'), $('#hora-tf')];
+	this.controlGroups = [$('#titulo-cg'), $('#descripcion-cg'),$('#array-cg'), $('#fecha-cg')];
 	
 // bind the form-error modal window to this controller to display any errors //
 	
@@ -35,7 +35,8 @@ function EventoValidator(){
 
 	this.validateInvitados = function(s)
 	{
-		return s.length >= 3;
+		console.log('leeeeee',s.length);
+		return s.length > 1;
 	}
 
 	
@@ -60,8 +61,6 @@ EventoValidator.prototype.validateForm = function()
 	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
 	if (this.validateTitulo(this.formFields[0].val()) == false) {
 		this.controlGroups[0].addClass('error'); e.push('Por favor,introduzca un titulo de al menos 3 caracteres');
-		console.log('foooooor',this.formFields);
-		console.log('foooooor',this.controlGroups);
 
 
 	}
@@ -70,11 +69,12 @@ EventoValidator.prototype.validateForm = function()
 		this.controlGroups[1].addClass('error');
 		e.push('Ponga una descripción del evento de al menos 10 caracteres');
 	}
-/*
-	if (this.validateInvitados(this.formFields[2].val()) == false) {
+
+	var array_validate = document.getElementById('array-tf').value;
+	if (array_validate==''){
 		this.controlGroups[2].addClass('error');
-		e.push('Tiene que invitar al menos a una persona');
-	}*/
+		e.push('Debe invitar al menos a una persona');
+	}
 
 
 
@@ -97,7 +97,7 @@ function anhadirInvitado()
 
      console.log(window.array_invitados);
 
-     document.getElementById("array-tf").value = array_invitados;
+     document.getElementById("array-tf").value = array_invitados.toString();
 
  
 

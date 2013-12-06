@@ -19,7 +19,7 @@ function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 
@@ -104,8 +104,7 @@ var displayUsers = function(userList) {
 
     for (var i=0; i<users.length; i++){
         console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
-
-        var li=document.createElement('li');
+    var li=document.createElement('li');
 
         test.appendChild(li);
         li.innerHTML=li.innerHTML + users[i].name;
@@ -119,7 +118,7 @@ var limpiar_lista = function(){
    test.removeChild(ul);
 
 
-}
+};
 
 
 
@@ -144,7 +143,7 @@ var checkUsers = function() {
               DEMO.send_chat_message();
           }
           return true;
-        }
+        };
 
     var add_text_to_chat = function(text, style) {
         var p = document.createElement('p');
@@ -152,19 +151,19 @@ var checkUsers = function() {
         p.innerHTML = text;
         chat_body.appendChild(p);
         chat_body.scrollTop = chat_body.scrollHeight;
-    }
+    };
 
     DEMO.connect_to_chat = function() {
     add_text_to_chat('Conexion a la sala con exito', 'italic');
-    }
+    };
 
     DEMO.add_chat_participant = function(name) {
         add_text_to_chat('Nuevo participante: ' + name, 'italic');
-    }
+    };
 
      DEMO.remove_chat_participant = function(name) {
         add_text_to_chat('Ha salido de la sala: ' + name, 'italic');
-    }
+    };
 
     DEMO.send_chat_message = function() {
         if(messText.value.match (/\S/)) {
@@ -181,13 +180,13 @@ var checkUsers = function() {
         var msg = evt.msg;
         add_text_to_chat(msg.name + ': ', 'name');
         add_text_to_chat(msg.msg, '');
-    }
+    };
 
     var connect_user = function () {
         $('#connection_panel').modal('hide');
         my_name = document.getElementById('username_txt').value;
         DEMO.init_demo(my_name);
-    }
+    };
 
 
 
@@ -213,10 +212,10 @@ var checkUsers = function() {
 
 
 
-        var usuario = $('#user-connected-tf').val();
-        console.log('nombre de usuario:',usuario);
+        var nombreUsuario = $('#user-connected-tf').val();
+        console.log('nombre de usuario:',nombreUsuario);
 
-        createToken(roomId, usuario, "presenter", function (response) {
+        createToken(roomId, nombreUsuario, "presenter", function (response) {
             var token = response;
             console.log('token created ', token);
             L.Logger.setLogLevel(L.Logger.DEBUG);
@@ -251,7 +250,7 @@ var checkUsers = function() {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
 
-                    add_div_to_grid("test" + stream.getID())
+                    add_div_to_grid("test" + stream.getID());
                     stream.show("test" + stream.getID());
 
                     stream.addEventListener("stream-data", DEMO.chat_message_received);
@@ -281,7 +280,7 @@ var checkUsers = function() {
 
                 room.connect();
 
-                add_div_to_grid("localVideo")
+                add_div_to_grid("localVideo");
                 localStream.show("localVideo");
 
 
@@ -293,7 +292,7 @@ var checkUsers = function() {
             //clearInterval(interval);
     
 
-}
+};
 
 //VIDEO_GRID
 
@@ -313,14 +312,14 @@ var add_div_to_grid = function(divId) {
 
     grid.appendChild(newDiv);   
     resizeGrid('video_grid');
-}
+};
 
 var remove_div_from_grid = function(divId) {
 
     var grid = document.getElementById('video_grid');
     grid.removeChild(document.getElementById(divId + '_container'));
     resizeGrid('video_grid');
-}
+};
 
 var resizeGrid = function() {
 
@@ -359,6 +358,6 @@ var resizeGrid = function() {
             }
         }
     }
-} 
+} ;
 
 

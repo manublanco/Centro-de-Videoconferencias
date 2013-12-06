@@ -36,6 +36,11 @@ $(document).ready(function(){
 	$('#name-tf').focus();
 	//$('#github-banner').css('top', '41px');
 
+	//evento = typeof(edata) != 'undefined' ? edata : { }
+
+
+
+
 // customize the account settings form //
 	
 	$('#account-form h1').text('Detalles de la cuenta');

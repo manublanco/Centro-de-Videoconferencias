@@ -37,35 +37,41 @@ block content
 
 			div#chat.span3.visible-desktop
 				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
-
+				
+				div#palabra Palabra
 				div#chat_body
 				input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
 			
+			
+
+
+
+
 			div#datos.span3
+				div#users
+					h4(align='center') Usuarios Conectados
+					br
+					ul#usuariosConectados
 				div#datosEvento
 					br
 					div#titulo 
-						b Titulo del Evento:
+						h3 Titulo del Evento:
 							div#tituloEvento
-								input#titulo.input(type='text', name='titulo', value= evento.titulo, disabled='disabled')
+								p#titulop #{evento.titulo}
 
 					div#descripcion
-						b Descripcion:
+						h3 Descripcion:
 							div#descripcionEvento
-								input#titulo.input.disabled(type='text', name='descripcion', value= evento.descripcion, disabled='disabled')
-
+								p#descripcionp #{evento.descripcion}
 					div#Fecha 
-						b Fecha de inicio:
-							div#fechaEvento
-								input#titulo.input.disabled(type='text', name='titulo', value= evento.fecha, disabled='disabled')
-
+						p#fechap 
+							b Fecha de inicio:  #{evento.fecha} 
 					div#Hora 
-						b Hora:
-							div#horaEvento
-								input#titulo.input.disabled(type='text', name='titulo', value= evento.hora, disabled='disabled')
-
+						p#horap
+							b Hora: #{evento.hora}
 
 					button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-primary.pull-right Modificar
+				
 				
 
 		

@@ -72,10 +72,6 @@ body {
   border: 1px solid #000;
   margin-top: 0px;
 }
-#chat {
-  position: relative;
-  height: 550px;
-}
 #datos {
   position: relative;
   height: 550px;
@@ -86,7 +82,7 @@ body {
   height: 550px;
   border: 1px solid #012c79;
   margin-left: 35px;
-  margin-top: 20px;
+  margin-top: 29px;
   background-color: #fff;
 }
 #columna_4 {
@@ -110,10 +106,10 @@ body {
   border: 1px solid #012c79;
   width: 100%;
   font-size: 14px;
-  height: 270px;
+  height: 260px;
+  overflow-y: scroll;
 }
 #users {
-  padding-top: 10px;
   background-color: #fff;
   bottom: 41px;
   top: 100px;
@@ -121,9 +117,13 @@ body {
   border: 1px solid #012c79;
   width: 100%;
   font-size: 14px;
-  margin-top: 5px;
   height: 270px;
   overflow-y: scroll;
+}
+#chat {
+  position: relative;
+  margin-top: 30px;
+  height: 583px;
 }
 #chat_body {
   background-color: #fff;
@@ -143,6 +143,15 @@ body {
   border: 1px solid #012c79;
   width: 80%;
   font-size: 14px;
+}
+#palabra {
+  background-color: #fff;
+  bottom: 0px;
+  padding: 10px;
+  border: 1px solid #012c79;
+  width: 80%;
+  font-size: 14px;
+  height: 100px;
 }
 #images_tablet {
   height: 90px;

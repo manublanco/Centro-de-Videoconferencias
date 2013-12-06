@@ -38,39 +38,35 @@ block content
 			div#chat.span3.visible-desktop
 				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 
+				div#palabra palabra
 				div#chat_body
 				input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
 			
+
 			div#datos.span3
-				div#datosEvento
-					br
-					div#titulo 
-						b Titulo del Evento:
-							div#tituloEvento 
-								input#titulo.input.disabled(type='text', name='titulo', value= evento.titulo, disabled='disabled')
-
-					div#descripcion
-						b Descripcion:
-							div#descripcionEvento
-								input#titulo.input.disabled(type='text', name='descripcion', value= evento.descripcion, disabled='disabled')
-
-					div#Fecha 
-						b Fecha de inicio:
-							div#fechaEvento
-								input#titulo.input.disabled(type='text', name='titulo', value= evento.fecha, disabled='disabled')
-
-					div#Hora 
-						b Hora:
-							div#horaEvento
-								input#titulo.input.disabled(type='text', name='titulo', value= evento.hora, disabled='disabled')
-			
 				div#users
 					h4(align='center') Usuarios Conectados
 					br
 					ul#usuariosConectados
-						
-						
+				div#datosEvento
+					div#titulo 
+						h3 Titulo del Evento:
+							div#tituloEvento
+								p#titulop #{evento.titulo}
 
+					div#descripcion
+						h3 Descripcion:
+							div#descripcionEvento
+								p#descripcionp #{evento.descripcion}
+					div#Fecha 
+						p#fechap 
+							b Fecha de inicio:  #{evento.fecha} 
+					div#Hora 
+						p#horap
+							b Hora: #{evento.hora}
+
+				
+			
 									
 
 								

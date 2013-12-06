@@ -34,11 +34,13 @@ input(type='hidden', value= user._id)#userId
 				label.control-label(for='fecha-tf') Fecha 
 				.controls
 					input#fecha-tf.input(type='date', name='fecha')	
-					input#array-tf.input.hide(type='text', name='array_invitados')
 	
 				label.control-label(for='hora-tf') Hora 
 				.controls	
 					input#hora-tf.input(type='time', name='hora', value='10:00')
+			#array-cg.control-group
+				.controls
+					input#array-tf.input.hide(type='text', name='array_invitados')
 			#invitado-cg.control-group
 				label.control-label(for='invitado-tf') Invitados
 				.controls
