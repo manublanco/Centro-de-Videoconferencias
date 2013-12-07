@@ -74,7 +74,7 @@ function anhadirInvitadomod()
 
 
      var x = document.getElementById("box");
-     array_invitados.push(' '+document.getElementById("invitado-tf").value);
+     array_invitados.push(document.getElementById("invitado-tf").value);
      x.innerHTML = array_invitados.join('<br/>'); 
 
      console.log(window.array_invitados);
@@ -103,7 +103,7 @@ function mod_evento()
       Separ = Variables[i].split('=');
       eval ('var '+Separ[0]+'="'+Separ[1]+'"');
     }
-  window.top.location.assign("http://localhost:3001/modificar_evento?roomId="+roomId);
+  window.top.location.assign("/modificar_evento?roomId="+roomId);
 
   }
 }

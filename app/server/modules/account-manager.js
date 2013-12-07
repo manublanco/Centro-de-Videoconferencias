@@ -183,13 +183,22 @@ exports.getEventByTitulo = function (titulo, callback)
 
 exports.getEventByGestor = function (gestor, callback)
 {
-	events.findOne({gestor: gestor}, function(e,o){callback(o);});
+	events.find({gestor: gestor}).toArray(function(e,o){callback(o);});
+
 };
 
 exports.getEventByGestorAndSala = function(gestor,sala,callback)
 {
 	events.findOne({gestor:gestor, sala:sala}, function(e,o){callback(o);});
 };
+
+exports.getEventByEmail = function (email, callback)
+{
+	events.find({invitados: email}).toArray(function(e,o){callback(o);});
+};
+
+
+
 
 
 

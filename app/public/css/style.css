@@ -16,6 +16,9 @@ body {
   background: radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
 /* W3C */
 }
+#table1 {
+  margin-top: 60px;
+}
 #login-container {
   width: 340px;
   margin: 160px auto;
@@ -97,6 +100,10 @@ body {
 }
 #roomcontainer {
   width: 100%;
+}
+#contenidoColumna {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 #datosEvento {
   background-color: #fff;

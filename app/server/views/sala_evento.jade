@@ -17,6 +17,10 @@ block content
 				ul#global-nav.nav.pull-left
 					a(href='/home').brand Home
 				ul#global-nav.nav.pull-left
+					a(href='/eventos_creados').brand Eventos Creados
+				ul#global-nav.nav.pull-left
+					a(href='/eventos_invitado').brand Invitaciones Eventos
+				ul#global-nav.nav.pull-left
 					a(href='/crear-evento').brand Crear Evento
 				ul#global-nav.nav.pull-left
 					a(href='/datos-usuario').brand Cuenta
@@ -40,7 +44,7 @@ block content
 
 				div#palabra palabra
 				div#chat_body
-				input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
+				input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
 			
 
 			div#datos.span3
@@ -50,12 +54,12 @@ block content
 					ul#usuariosConectados
 				div#datosEvento
 					div#titulo 
-						h3 Titulo del Evento:
+						h3 Titulo del Evento
 							div#tituloEvento
 								p#titulop #{evento.titulo}
 
 					div#descripcion
-						h3 Descripcion:
+						h3 Descripcion
 							div#descripcionEvento
 								p#descripcionp #{evento.descripcion}
 					div#Fecha 

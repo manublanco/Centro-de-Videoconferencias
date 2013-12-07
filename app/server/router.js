@@ -57,25 +57,16 @@ module.exports = function(app) {
 // logged-in user homepage //
 	
 	app.get('/home', function(req, res) {
-		if (req.session.user === null){
+	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
-			res.redirect('/');
-		}else{
-
-			var gestor = req.session.user.user;
-			//console.log('gestorrr',gestor);
-			AM.getEventByGestor(gestor,function(a){
-				console.log('aaaaaaaaaaaa',a);
-				var events= a;
-				console.log('eventooooos',events);
-				res.render('home', {
+	        res.redirect('/');
+	    }   else{
+			res.render('home', {
 				title : 'Control Panel',
-				udata : req.session.user,
-				eventos_creados: events
-
+				countries : CT,
+				udata : req.session.user
 			});
-		});
-	}
+	    }
 	});
 	
 	app.post('/home', function(req, res){
@@ -437,6 +428,9 @@ app.get('/datos-usuario', function(req, res) {
 
 
 
+
+
+
 	
 	app.post('/sala_evento_gestor', function(req, res){
 		if (req.param('user') !== undefined) {
@@ -487,6 +481,122 @@ app.get('/datos-usuario', function(req, res) {
 			}
 		});
 	});
+
+	
+	app.get('/eventos_creados', function(req, res) {
+		if (req.session.user === null){
+	// if user is not logged-in redirect back to login page //
+			res.redirect('/');
+		}else{
+
+			var gestor = req.session.user;
+			var correo = gestor.email;
+			AM.getEventByGestor(gestor.name,function(o){
+				var eventosCreados = o;
+
+
+			AM.getEventByEmail(correo,function(a){
+				var events= a;
+				//console.log('eventooooos',events);
+				res.render('eventos_creados', {
+				title : 'Eventos Creados',
+				udata : req.session.user,
+				eventos_invitado: events,
+				eventos_creados: eventosCreados
+
+			});
+		});
+		});
+	}
+	});
+
+	app.post('/eventos_creados', function(req, res){
+		if (req.param('user') !== undefined) {
+			AM.updateAccount({
+				user        : req.param('user'),
+				name		: req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
+				pass        : req.param('pass')
+			}, function(e, o){
+				if (e){
+					res.send('error-updating-account', 400);
+				}	else{
+					req.session.user = o;
+			// update the user's login cookies if they exists //
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
+						res.cookie('user', o.user, { maxAge: 900000 });
+						res.cookie('pass', o.pass, { maxAge: 900000 });	
+					}
+					res.send('ok', 200);
+				}
+			});
+		}	else if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+	});
+
+
+
+	app.get('/eventos_invitado', function(req, res) {
+		if (req.session.user === null){
+	// if user is not logged-in redirect back to login page //
+			res.redirect('/');
+		}else{
+
+			var gestor = req.session.user;
+			var correo = gestor.email;
+			correo2=' '+correo;
+			AM.getEventByGestor(gestor.name,function(o){
+				var eventosCreados = o;
+
+			
+			AM.getEventByEmail(correo2,function(a){
+				console.log('aaaaaaaaaaaa',a);
+				var events= a;
+				//console.log('eventooooos',events);
+				res.render('eventos_invitado', {
+				title : 'Invitaciones a Eventos',
+				udata : req.session.user,
+				eventos_invitado: events,
+				eventos_creados: eventosCreados
+
+			});
+		});
+		});
+	}
+	});
+
+		app.post('/eventos_invitado', function(req, res){
+		if (req.param('user') !== undefined) {
+			AM.updateAccount({
+				user        : req.param('user'),
+				name		: req.param('name'),
+				email       : req.param('email'),
+				country     : req.param('country'),
+				pass        : req.param('pass')
+			}, function(e, o){
+				if (e){
+					res.send('error-updating-account', 400);
+				}	else{
+					req.session.user = o;
+			// update the user's login cookies if they exists //
+					if (req.cookies.user !== undefined && req.cookies.pass !== undefined){
+						res.cookie('user', o.user, { maxAge: 900000 });
+						res.cookie('pass', o.pass, { maxAge: 900000 });	
+					}
+					res.send('ok', 200);
+				}
+			});
+		}	else if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+	});
+
 
 
 

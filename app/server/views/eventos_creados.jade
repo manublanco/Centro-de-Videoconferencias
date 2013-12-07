@@ -7,6 +7,7 @@
 //- Proyecto fin de carrera. Universidade da Coruña
 //-
 
+
 extends layout
 
 block content
@@ -22,20 +23,45 @@ block content
 				ul#global-nav.nav.pull-left
 					a(href='/crear-evento').brand Crear Evento
 				ul#global-nav.nav.pull-left
-					a(href='#').brand Cuenta
+					a(href='/datos-usuario').brand Cuenta
 				button#btn-logout.btn.btn-primary
 					i.icon-lock.icon-white
 					| Salir
+	div.container(style='margin:20px')
+		table.table.table-bordered.table-striped#table1
+			thead
+				tr
+					th(style='width:40px') #
+					th(style='width:180px') Titulo
+					th(style='width:200px') Descripcion
+					th(style='width:90px')  Fecha
+					th(style='width:90px')  hora
 
-	include account
+					th Sala
+			tbody
+			- for (var i = 0; i < eventos_creados.length; i++)
+				tr
+					td= i+1
+					td= eventos_creados[i].titulo
+					td= eventos_creados[i].descripcion
+					td= eventos_creados[i].fecha
+					td= eventos_creados[i].hora
+					td
+						a(href='/sala_evento_gestor?roomId=' + eventos_creados[i].sala) Acceder 
+
+
+
+		
+		
 	include modals/alert
 	include modals/confirm
+
 
 block scripts
 	script(src='/vendor/jquery.min.js')
 	script(src='/vendor/jquery.form.js')
 	script(src='/vendor/bootstrap-modal.js')
 	script(src='/vendor/bootstrap-transition.js')
-	script(src='/js/views/datos-usuario.js')
-	script(src='/js/controllers/datosusuarioController.js')
-	script(src='/js/form-validators/accountValidator.js')
+	script(src='/js/views/eventosCreados.js')
+	script(src='/js/controllers/eventosCreadosController.js')
+	//script(src='/js/form-validators/accountValidator.js')

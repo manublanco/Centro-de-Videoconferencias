@@ -17,6 +17,10 @@ block content
 				ul#global-nav.nav.pull-left
 					a(href='/home').brand Home
 				ul#global-nav.nav.pull-left
+					a(href='/eventos_creados').brand Eventos Creados
+				ul#global-nav.nav.pull-left
+					a(href='/eventos_invitado').brand Invitaciones Eventos
+				ul#global-nav.nav.pull-left
 					a(href='/crear-evento').brand Crear Evento
 				ul#global-nav.nav.pull-left
 					a(href='/datos-usuario').brand Cuenta
@@ -38,18 +42,47 @@ block content
 
 			div.row.container-fluid
 				div#columna_4.span4
-					br
-					h3(align='center') Eventos Creados:
+					div#contenidoColumna
+						br
+						h2(align='center') Eventos Creados
+						br
+						div
+							br
+							br
+							h4(align='center') Desde esta sección podrá gestionar los eventos que usted ha creado.
+							br
+							br
+							br
+							br
+							br
+						div	
+							div#eventosCreados.btn.btn-large.btn-block.btn-primary(onclick="window.location.href='/eventos_creados'") Gestion de Eventos Creados
+
+
+				
+				div#columna_4.span4
+					div#contenidoColumna
+						br
+						h2(align='center') Invitaciones a eventos
+						br
+						div	
+							br
+							br
+							h4(align='center') Desde esta sección podrá acceder todos los eventos a los que ha sido invitado.
+							br
+							br
+							br
+							br
+							br
+							div#eventosInvitado.btn.btn-large.btn-block.btn-primary(onclick="window.location.href='/eventos_invitado'") Ver Invitaciones a Eventos
+
 
 				
 				div#columna_4.span4
 					br
-					h3(align='center') Invitaciones a eventos:
-
-				
-				div#columna_4.span4
+					h2(align='center') Salas publicas
 					br
-					h3(align='center') Salas publicas:
+					br
 					br
 					div
 						div#room1.btn.btn-large.btn-block.btn-primary Sala 1
@@ -71,7 +104,7 @@ block content
 					input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 
 					div#chat_body
-					input#chat_message(name='mensaje',rows='1',placeholder='chat_message')
+					input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
 			
 								
 									

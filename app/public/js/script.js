@@ -145,7 +145,7 @@ getRooms (displayRooms);
 
 //CHAT
 
-      DEMO.messText.onkeyup = function(e) {
+      messText.onkeyup = function(e) {
           e = e || event;
           if (e.keyCode === 13) {
               DEMO.send_chat_message();
