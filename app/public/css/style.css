@@ -147,6 +147,18 @@ body {
   border: 1px solid #012c79;
   width: 80%;
   font-size: 14px;
+  margin-top: 10px;
+}
+#chat_body2 {
+  background-color: #fff;
+  position: absolute;
+  bottom: 41px;
+  top: 27px;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #012c79;
+  width: 80%;
+  font-size: 14px;
 }
 #chat_message {
   position: absolute;

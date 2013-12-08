@@ -57,16 +57,16 @@ module.exports = function(app) {
 // logged-in user homepage //
 	
 	app.get('/home', function(req, res) {
-	    if (req.session.user == null){
+		if (req.session.user === null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
+		res.redirect('/');
+		}else{
 			res.render('home', {
 				title : 'Control Panel',
 				countries : CT,
 				udata : req.session.user
 			});
-	    }
+		}
 	});
 	
 	app.post('/home', function(req, res){

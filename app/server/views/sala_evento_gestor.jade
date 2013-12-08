@@ -42,7 +42,8 @@ block content
 			div#chat.span3.visible-desktop
 				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 				
-				div#palabra Tiene el turno de palabra
+				div#palabra 
+					h4(align='center') hola
 				div#chat_body
 				input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
 			
@@ -74,7 +75,7 @@ block content
 						p#horap
 							b Hora: #{evento.hora}
 
-					button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-primary.pull-right Modificar
+					button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-block.btn-large.btn-primary Modificar Evento
 				
 				
 
@@ -92,4 +93,4 @@ block scripts
 	script(src='/js/evento_script.js')
 	script(src='/js/controllers/salaEventoController.js')
 	script(src='/js/views/salaEvento.js')
-	script(src='/js/form-validators/modificarEventoValidator.js')
+	script(src='/js/form-validators/salaEventoValidator.js')

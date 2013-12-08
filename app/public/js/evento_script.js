@@ -166,6 +166,11 @@ var checkUsers = function() {
     };
 
     DEMO.send_chat_message = function() {
+        var parse = messText.value.split(" ");
+
+
+        console.log('parseeeee',parse);
+        if ((parse[0] !== 'code001')&&(parse[1] !== null)){
         if(messText.value.match (/\S/)) {
             if (localStream) {
                 localStream.sendData({msg: messText.value, name: my_name});
@@ -174,12 +179,42 @@ var checkUsers = function() {
             add_text_to_chat(messText.value, '');
         }
         messText.value = '';
-    };
+        }else if (parse[1] == my_name)
+        {
+             console.log('parse1',parse[1]);
+              if (localStream) {
+                localStream.sendData({msg: messText.value});
+            }
+             document.getElementById('palabra').innerHTML = 'Tiene la palabra';
+            }else{
+                 if (localStream) {
+                localStream.sendData({msg: messText.value});
+                console.log('mensaje',messText.value);
+            }
+            document.getElementById('palabra').innerHTML= 'No tiene la palabra';
+
+            }   
+            messText.value='';
+        };
+    
 
     DEMO.chat_message_received = function(evt) {
         var msg = evt.msg;
+        var parse_receive=msg.msg.split(" ");
+
+        console.log('recibidoooooo',msg);
+        console.log('parsee_reeeeceive',parse_receive);
+
+
+        if ((parse_receive[0] !== 'code001')&&(parse_receive[1] !== null)){
         add_text_to_chat(msg.name + ': ', 'name');
         add_text_to_chat(msg.msg, '');
+        }else if (parse_receive[1] == my_name){
+            document.getElementById('palabra').innerHTML = 'Tiene la palabra';
+        } else{
+            document.getElementById('palabra').innerHTML= 'No tiene la palabra';
+
+        }
     };
 
     var connect_user = function () {
@@ -288,7 +323,7 @@ var checkUsers = function() {
             localStream.init();
         });  
 
-            interval=setInterval(checkUsers,1000);
+            //interval=setInterval(checkUsers,1000);
             //clearInterval(interval);
     
 
