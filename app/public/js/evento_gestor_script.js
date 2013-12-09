@@ -12,6 +12,8 @@ var serverUrl = "/";
 var localStream, room, interval;
 var DEMO = {};
 
+var connectedUsers=[];
+
 var user = typeof(udata) != 'undefined' ? udata : { };
 
 
@@ -28,6 +30,7 @@ window.onload = function () {
 
 try{
 
+    clearInterval(interval);
     var usuario = $('#user-connected-tf').val();
     var my_name = usuario;
     var messText = document.getElementById('chat_message');
@@ -80,31 +83,24 @@ try{
     };
 
 
+var cederPalabra = function (name){
+
+    messText.value='code001 '+name ;
+    DEMO.send_chat_message();
 
 
 
-var displayUsers = function(userList) {
-
-    users = JSON.parse(userList);
-    document.getElementById("usuariosConectados").innerHTML = "";
-    var test=document.getElementById('usuariosConectados');
-    var ul=document.createElement('ul');
-    //test.appendChild(ul);
-    for (var i=0; i<users.length; i++){
-        console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
-    var li=document.createElement('li');
-        test.appendChild(li);
-        li.innerHTML=li.innerHTML + "&bull;"+ users[i].name;
-    }
 };
+
+
+
 
 
 
 
 var checkUsers = function() {
     getUsers(roomId, function(users) {
-        displayUsers(users);
-        //limpiar_lista();       
+        displayUsers(users);                
     });
 };
 
@@ -119,6 +115,7 @@ var checkUsers = function() {
           }
           return true;
         };
+
 
     var add_text_to_chat = function(text, style) {
         var p = document.createElement('p');
@@ -144,7 +141,6 @@ var checkUsers = function() {
         var parse = messText.value.split(" ");
 
 
-        console.log('parseeeee',parse);
         if ((parse[0] !== 'code001')&&(parse[1] !== null)){
         if(messText.value.match (/\S/)) {
             if (localStream) {
@@ -156,9 +152,10 @@ var checkUsers = function() {
         messText.value = '';
         }else if (parse[1] == my_name)
         {
-             console.log('parse1',parse[1]);
               if (localStream) {
                 localStream.sendData({msg: messText.value});
+                console.log('mensaje',messText.value);
+
             }
 
              document.getElementById('palabra').style.color = "green";
@@ -201,6 +198,25 @@ var checkUsers = function() {
     };
 
 
+var displayUsers = function(userList) {
+
+    users = JSON.parse(userList);
+    document.getElementById("usuariosConectados").innerHTML = "";
+    var test=document.getElementById('usuariosConectados');
+
+    for (var i=0; i<users.length; i++){
+        console.log('User ', i, ':', users[i].name, 'with role: ', users[i].role);
+        
+
+        var input = document.createElement('input');
+        input.type = 'button';
+        input.className='btn btn-primary btn-block';
+        input.value = users[i].name;
+        input.addEventListener('click', function(){cederPalabra(this.value);}, false);
+        usuariosConectados.appendChild(input);
+    }
+
+};
 
 
   
@@ -224,6 +240,7 @@ var checkUsers = function() {
 
 
         var nombreUsuario = $('#user-connected-tf').val();
+        console.log('nombre de usuario:',nombreUsuario);
 
         createToken(roomId, nombreUsuario, "presenter", function (response) {
             var token = response;
@@ -299,8 +316,7 @@ var checkUsers = function() {
         });  
 
             interval=setInterval(checkUsers,5000);
-            //clearInterval(interval);
-    
+            //checkUsers();
 
 };
 

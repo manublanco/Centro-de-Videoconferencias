@@ -19,6 +19,9 @@ body {
 #table1 {
   margin-top: 60px;
 }
+#btn-user {
+  padding-left: 0px;
+}
 #login-container {
   width: 340px;
   margin: 160px auto;
@@ -50,7 +53,8 @@ body {
 .btn.btn-block {
   width: 80%;
   heigth: 100px;
-  margin-left: 25px;
+  margin-left: 15px;
+  align: center;
 }
 #img {
   width: 400px;
@@ -136,6 +140,9 @@ body {
   position: relative;
   margin-top: 6px;
   height: 583px;
+}
+#usuariosConectados {
+  list-style-type: none;
 }
 #chat_body {
   background-color: #fff;

@@ -161,7 +161,6 @@ app.get('/datos-usuario', function(req, res) {
 	app.post('/crear-evento', function(req, res){
 		if (req.param('user') !== undefined) {
 			var invitados_array = req.param('array_invitados').split(",");
-			console.log('invitados arrayyyyy', invitados_array);
 		
 		N.API.createRoom('id_sala', function (roomID) {
 				id_sala = roomID._id;
@@ -180,7 +179,6 @@ app.get('/datos-usuario', function(req, res) {
 				}	else{
 					AM.getEmailByUser(req.param('user'),function(a){
 						email = a.email;
-						console.log('email',email);
 						AM.getEventByTitulo(req.param('titulo'), function(o){
 
 						EM.enviarConfirmacionEventoCreado(o,email,function(e,m){
@@ -194,7 +192,6 @@ app.get('/datos-usuario', function(req, res) {
 						}
 					});
 						EM.enviarInvitacion(o,function (e,m){	
-							console.log('ooooooooooooooooo',o);
 
 						// this callback takes a moment to return //
 						// should add an ajax loader to give user feedback //
@@ -236,7 +233,6 @@ app.get('/datos-usuario', function(req, res) {
 			res.redirect('/');
 		}else{
 			var sala = req.query.roomId;
-			console.log('salaaaa     '+sala);
 
 			AM.getEventBySala(sala, function(a){
 				evento=a;
@@ -256,7 +252,6 @@ app.get('/datos-usuario', function(req, res) {
 		if (req.param('user') !== undefined) {
 			
 			var invitados_array = req.param('array_invitados').split(",");
-			console.log('invitados arrayyyyy', invitados_array);
 
 			var sala = String(req.query.roomId);
 			AM.updateEvent(sala,{
@@ -272,7 +267,6 @@ app.get('/datos-usuario', function(req, res) {
 				}	else{
 					AM.getEmailByUser(o.gestor,function(a){
 						var email = a.email;
-						console.log('email',email);
 						AM.getEventByTitulo(req.param('titulo'), function(o){
 
 						EM.enviarModificacionEvento(o,email,function(e,m){
@@ -318,7 +312,6 @@ app.get('/datos-usuario', function(req, res) {
 
 
 	app.post('/deleteEvent', function(req, res){
-		console.log('useeeeer',req.session.user.user);
 		if (req.session.user.user !== undefined) {
          N.API.deleteRoom(req.body.sala, function(result) {
 			AM.deleteEvent(req.body.sala, function(e, obj){
@@ -399,13 +392,10 @@ app.get('/datos-usuario', function(req, res) {
 		var gestor = req.session.user.user;
 		var sala = req.query.roomId;
 
-		console.log('gestoooor',gestor);
 
 
 		AM.getEventByGestorAndSala(gestor,sala,function(a){
 				var x = a;
-				console.log('xxxxxxxx',x);
-			//	console.log('eventoooooooooooooooooooooooooo',evento.gestor);
 			if (typeof x !== undefined){
 				if (x !== null){
 					if (req.session.user.user == a.gestor){
@@ -497,7 +487,6 @@ app.get('/datos-usuario', function(req, res) {
 
 			AM.getEventByEmail(correo,function(a){
 				var events= a;
-				//console.log('eventooooos',events);
 				res.render('eventos_creados', {
 				title : 'Eventos Creados',
 				udata : req.session.user,
@@ -554,9 +543,7 @@ app.get('/datos-usuario', function(req, res) {
 
 			
 			AM.getEventByEmail(correo2,function(a){
-				console.log('aaaaaaaaaaaa',a);
 				var events= a;
-				//console.log('eventooooos',events);
 				res.render('eventos_invitado', {
 				title : 'Invitaciones a Eventos',
 				udata : req.session.user,

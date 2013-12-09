@@ -43,7 +43,6 @@ block content
 				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 				
 				div#palabra 
-					h4(align='center') hola
 				div#chat_body
 				input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
 			
@@ -55,8 +54,10 @@ block content
 			div#datos.span3
 				div#users
 					h4(align='center') Usuarios Conectados
+					h5(align='center') Pulse aqui para ceder la palabra
 					br
 					ul#usuariosConectados
+
 				div#datosEvento
 					br
 					div#titulo 
@@ -75,8 +76,8 @@ block content
 						p#horap
 							b Hora: #{evento.hora}
 
-					button(type='button', onclick= 'mod_evento()')#modificar-evento.btn.btn-block.btn-large.btn-primary Modificar Evento
-				
+					button#modificar-evento.btn.btn-block.btn-large.btn-primary(onclick="window.location.href='/modificar_evento?roomId=#{evento.sala}'") Modificar Evento
+
 				
 
 		
@@ -90,7 +91,7 @@ block scripts
 	script(src='/vendor/bootstrap-modal.js')
 	script(src='/vendor/bootstrap-transition.js')
 	script(src='/js/erizo.js')
-	script(src='/js/evento_script.js')
+	script(src='/js/evento_gestor_script.js')
 	script(src='/js/controllers/salaEventoController.js')
 	script(src='/js/views/salaEvento.js')
 	script(src='/js/form-validators/salaEventoValidator.js')

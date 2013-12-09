@@ -93,20 +93,7 @@ function guardar_invitados_previos()
 }
 
 
-function mod_evento()
-{
 
-    if(location.search.substr(1)){
-    Variables = location.search.substr(1).split ('&');
-    console.log('variableees',Variables);
-    for (i = 0; i < Variables.length; i++) {
-      Separ = Variables[i].split('=');
-      eval ('var '+Separ[0]+'="'+Separ[1]+'"');
-    }
-  window.top.location.assign("/modificar_evento?roomId="+roomId);
-
-  }
-}
 
 
 
