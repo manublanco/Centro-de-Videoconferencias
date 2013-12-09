@@ -75,7 +75,7 @@ try{
     var my_name = usuario;
 
     var messText = document.getElementById('chat_message');
-    var chat_body = document.getElementById('chat_body');
+    var chat_body = document.getElementById('chat_body2');
     var screen = getParameterByName("screen");
 	localStream = Erizo.Stream({audio: true, video: true, data: true, screen: screen, attributes:{name: my_name}});
 

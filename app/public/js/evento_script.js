@@ -9,7 +9,7 @@
 
 var serverUrl = "/";
 
-var localStream, room, interval;
+var localStream, room, interval,recording;
 var DEMO = {};
 
 var user = typeof(udata) != 'undefined' ? udata : { };
@@ -22,6 +22,17 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function startRecording (){
+  if (room!=undefined){
+    if (!recording){
+      room.startRecording(localStream);
+      recording = true;
+    }else{
+      room.stopRecording(localStream);
+      recording = false;
+    }
+  }
+}
 
 
 window.onload = function () {
@@ -162,14 +173,14 @@ var checkUsers = function() {
             }
 
              document.getElementById('palabra').style.color = "green";
-             document.getElementById('palabra').innerHTML = '<h4>&bull; TIENE LA PALABRA</h4>';
+             document.getElementById('palabra').innerHTML = '<h4 style="color:green">&bull; TIENE LA PALABRA</p>';
             }else{
                  if (localStream) {
                 localStream.sendData({msg: messText.value});
                 console.log('mensaje',messText.value);
             }
             document.getElementById('palabra').style.color = "red";
-            document.getElementById('palabra').innerHTML= '<h4>&bull; NO TIENE LA PALABRA</h4>';
+            document.getElementById('palabra').innerHTML = '<h4 style="color:red">&bull; NO TIENE LA PALABRA</p>';
 
             }   
             messText.value='';
@@ -186,10 +197,10 @@ var checkUsers = function() {
         add_text_to_chat(msg.msg, '');
         }else if (parse_receive[1] == my_name){
             document.getElementById('palabra').style.color = "green";
-            document.getElementById('palabra').innerHTML = '<h4>&bull; TIENE LA PALABRA</h4>';
+             document.getElementById('palabra').innerHTML = '<h4 style="color:green">&bull; TIENE LA PALABRA</p>';
         } else{
             document.getElementById('palabra').style.color = "red";
-            document.getElementById('palabra').innerHTML= '<h4>&bull; NO TIENE LA PALABRA</h4>';
+            document.getElementById('palabra').innerHTML = '<h4 style="color:red">&bull; NO TIENE LA PALABRA</p>';
 
         }
     };

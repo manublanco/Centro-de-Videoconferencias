@@ -63,11 +63,14 @@ block content
 							div#descripcionEvento
 								p#descripcionp #{evento.descripcion}
 					div#Fecha 
-						p#fechap 
-							b Fecha de inicio:  #{evento.fecha} 
+						h4#fechap 
+							p Fecha de inicio:  #{evento.fecha} 
 					div#Hora 
-						p#horap
-							b Hora: #{evento.hora}
+						h4#horap
+							p Hora: #{evento.hora}
+
+					button#recordButton.btn.btn-block.btn-large.btn-primary(onclick='startRecording()') Empezar/Parar Grabacion
+
 
 				
 			
