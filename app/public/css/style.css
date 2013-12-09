@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  margin-top: 40px;
   background: #f2f9fe;
   background: -moz-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
 /* FF3.6+ */
@@ -54,6 +55,7 @@ body {
   width: 80%;
   heigth: 100px;
   margin-left: 15px;
+  margin-bottom: 11px;
   align: center;
 }
 #img {
@@ -69,6 +71,7 @@ body {
 }
 .hero-unit {
   height: 17%;
+  width: 92%;
   padding: 60px;
   padding-top: 30px;
   margin-bottom: 10px;
@@ -83,10 +86,12 @@ body {
   margin-top: 10px;
   padding-left: 0px;
   margin-left: 0px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 #datos {
   position: relative;
-  height: 550px;
+  height: 548px;
   margin-top: 30px;
   margin-left: 0px;
 }
@@ -98,36 +103,45 @@ body {
   background-color: #fff;
 }
 #columna_4 {
-  height: 43%;
-  width: 31%;
-  border: 1px solid #000;
-  margin-left: 0px;
-  margin-right: 12px;
-  margin-top: 0px;
-  background-color: #fff;
-  color: inherit;
-  padding-bottom: 10px;
-}
-#columna_4_2 {
-  height: 43%;
-  width: 31%;
-  border: 1px solid #000;
-  margin-right: 12px;
-  margin-top: 0px;
-  background-color: #fff;
-  color: inherit;
-  padding-bottom: 10px;
-}
-#columna_4_3 {
-  height: 43%;
+  height: 47%;
   width: 32%;
   border: 1px solid #000;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 0px;
   background-color: #fff;
   color: inherit;
-  padding-bottom: 18px;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding-left: 0px;
 }
-.row {
+#columna_4_2 {
+  height: 47%;
+  width: 32%;
+  border: 1px solid #000;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0px;
+  background-color: #fff;
+  color: inherit;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding-left: 0px;
+}
+#columna_4_3 {
+  height: 47%;
+  width: 32%;
+  border: 1px solid #000;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0px;
+  background-color: #fff;
+  color: inherit;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
   padding-right: 0px;
 }
 #contenidoColumna {
@@ -159,7 +173,7 @@ body {
 #chat {
   position: relative;
   margin-top: 30px;
-  height: 583px;
+  height: 580px;
 }
 #chat2 {
   position: relative;

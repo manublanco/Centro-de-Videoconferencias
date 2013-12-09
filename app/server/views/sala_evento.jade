@@ -29,58 +29,58 @@ block content
 					| Salir
 	
 					// preset form values if we receive a userdata object //
-					user = typeof(udata) != 'undefined' ? udata : { }
-					evento = typeof(edata) != 'undefined' ? edata : { }
-										// store the userId on the client side in a hidden input field //
-					input(type='hidden', value= user._id)#userId
-					//input(type='hidden', value= evento._id)#eventId
-					input(type='hidden', value= evento.sala)#eventSala		
-		div#vidcontainer.container
-		div.row
-			div#video_grid.span9
+				user = typeof(udata) != 'undefined' ? udata : { }
+				evento = typeof(edata) != 'undefined' ? edata : { }
+									// store the userId on the client side in a hidden input field //
+				input(type='hidden', value= user._id)#userId
+				//input(type='hidden', value= evento._id)#eventId
+				input(type='hidden', value= evento.sala)#eventSala		
+	div#vidcontainer.container
+	div.row
+		div#video_grid.span9
 
-			div#chat.span3.visible-desktop
-				input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
+		div#chat.span3.visible-desktop
+			input#user-connected-tf.input.hide(type='text', name='user-connected', value= user.user)
 
-				div#palabra
-				div#chat_body
-				input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
+			div#palabra
+			div#chat_body
+			input#chat_message(name='mensaje',rows='1',placeholder='Escriba aquí su mensaje')
+		
+
+		div#datos.span3
+			div#users
+				h4(align='center') Usuarios Conectados
+				br
+				ul#usuariosConectados
+			div#datosEvento
+				div#titulo 
+					h3 Titulo del Evento
+						div#tituloEvento
+							p#titulop #{evento.titulo}
+
+				div#descripcion
+					h3 Descripcion
+						div#descripcionEvento
+							p#descripcionp #{evento.descripcion}
+				div#Fecha 
+					h4#fechap 
+						p Fecha de inicio:  #{evento.fecha} 
+				div#Hora 
+					h4#horap
+						p Hora: #{evento.hora}
+
+				button#recordButton.btn.btn-block.btn-large.btn-primary(onclick='startRecording()') Empezar/Parar Grabacion
+
+
 			
-
-			div#datos.span3
-				div#users
-					h4(align='center') Usuarios Conectados
-					br
-					ul#usuariosConectados
-				div#datosEvento
-					div#titulo 
-						h3 Titulo del Evento
-							div#tituloEvento
-								p#titulop #{evento.titulo}
-
-					div#descripcion
-						h3 Descripcion
-							div#descripcionEvento
-								p#descripcionp #{evento.descripcion}
-					div#Fecha 
-						h4#fechap 
-							p Fecha de inicio:  #{evento.fecha} 
-					div#Hora 
-						h4#horap
-							p Hora: #{evento.hora}
-
-					button#recordButton.btn.btn-block.btn-large.btn-primary(onclick='startRecording()') Empezar/Parar Grabacion
-
-
-				
-			
-									
-
+		
 								
+
+							
 
 	include modals/alert
 	include modals/confirm
-		
+	
 
 
 
