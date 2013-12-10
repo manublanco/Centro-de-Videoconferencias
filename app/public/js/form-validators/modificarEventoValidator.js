@@ -71,17 +71,18 @@ modificarEventoValidator.prototype.validateForm = function()
 
 function anhadirInvitadomod()
    {
+	 var x = document.getElementById("box");
+	 var space = " ";
+	 var valor = document.getElementById("invitado-tf").value;
+	 var res = space.concat(valor);
+	 array_invitados.push(res);
+	 x.innerHTML = array_invitados.join('<br/>'); 
+
+	 document.getElementById("array-tf").value = array_invitados.toString();
 
 
-     var x = document.getElementById("box");
-     array_invitados.push(document.getElementById("invitado-tf").value);
-     x.innerHTML = array_invitados.join('<br/>'); 
 
-     console.log(window.array_invitados);
 
-     document.getElementById("array-tf").value = array_invitados;
-
- 
 
    }	
 

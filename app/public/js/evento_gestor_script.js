@@ -25,7 +25,7 @@ function getParameterByName(name) {
 }
 
 function startRecording (){
-  if (room!=undefined){
+  if (room!==undefined){
     if (!recording){
       room.startRecording(localStream);
       recording = true;

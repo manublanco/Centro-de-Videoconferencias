@@ -481,7 +481,7 @@ app.get('/datos-usuario', function(req, res) {
 
 			var gestor = req.session.user;
 			var correo = gestor.email;
-			AM.getEventByGestor(gestor.name,function(o){
+			AM.getEventByGestor(gestor.user,function(o){
 				var eventosCreados = o;
 
 
